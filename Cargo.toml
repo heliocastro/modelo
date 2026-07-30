@@ -27,7 +27,7 @@ anyhow = "1.0"
 clap = { version = "4.0", features = ["derive"] }
 ratatui = "0.26"
 crossterm = "0.27"
-pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
+pyo3 = { version = "0.29", features = ["extension-module"], optional = true }
 purl = { version = "0.1", features = ["serde", "package-type"] }
 
 [features]
