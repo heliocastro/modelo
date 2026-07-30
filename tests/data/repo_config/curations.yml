@@ -1,0 +1,169 @@
+analyzer:
+  skip_excluded: true
+  enabled_package_managers: [ 'Conan' ]
+  package_managers:
+    Conan:
+      options:
+        lockfileName: conan.lock
+
+excludes:
+  paths:
+    - pattern: "buildfiles/**"
+      reason: "BUILD_TOOL_OF"
+      comment: "Contains buildscripts and other stuff not included in final delivery"
+    - pattern: "doc/**"
+      reason: "DOCUMENTATION_OF"
+      comment: "Contains documentation"
+    - pattern: "doc/**"
+      reason: "DOCUMENTATION_OF"
+      comment: "Contains documentation"
+    - pattern: "scripts/**"
+      reason: "OTHER"
+      comment: "Various scripts used for bug analysis, code formatting etc."
+    - pattern: "test/**"
+      reason: "TEST_OF"
+      comment: "Test data"
+    - pattern: "tools/**"
+      reason: "TEST_TOOL_OF"
+      comment: "Test framework and other stuff not included in final delivery"
+    - pattern: "dev/EhrTests/**"
+      reason: "TEST_TOOL_OF"
+      comment: "EhrTest app not included in final delivery"
+  scopes:
+    - pattern: "androidJacocoAnt"
+      reason: "TEST_DEPENDENCY_OF"
+      comment: "Jacoco is used for code coverage. Not part of the release."
+    - pattern: "debugAndroidTestCompileClasspath"
+      reason: "TEST_DEPENDENCY_OF"
+      comment: "Compile dependencies for instrumentation tests. Not part of the release."
+
+snippet_choices:
+  - provenance:
+      url: "https://github.com/Kitware/iMSTK.git"
+    choices:
+      - given:
+          source_location:
+            path: "dev/CppCodecWrapper/inc/CppCodecWrapper/base64_rfc4648.h"
+            start_line: 21
+            end_line: 34
+        choice:
+          purl: "pkg:github/kitware/imstk"
+          reason: "NO_RELEVANT_FINDING"
+          comment: "The only similarity here is defining macros to suppress a warning. This was necessary to handle GNU, Clang and MSVC compiler. This is common practice and no licence was violated."
+
+  - provenance:
+      url: "https://github.com/ska-telescope/ska-sdp-func.git"
+    choices:
+      - given:
+          source_location:
+            path: "dev/Doxyfile"
+            start_line: 4
+            end_line: 856
+        choice:
+          purl: "pkg:github/ska-telescope/ska-sdp-func"
+          reason: "NO_RELEVANT_FINDING"
+          comment: "This is a false positive. The file contains the configuration for Doxygen and is not part of the release."
+      - given:
+          source_location:
+            path: "dev/Doxyfile"
+            start_line: 869
+            end_line: 870
+        choice:
+          purl: "pkg:github/ska-telescope/ska-sdp-func"
+          reason: "NO_RELEVANT_FINDING"
+          comment: "This is a false positive. The file contains the configuration for Doxygen and is not part of the release."
+      - given:
+          source_location:
+            path: "dev/Doxyfile"
+            start_line: 896
+            end_line: 2577
+        choice:
+          purl: "pkg:github/ska-telescope/ska-sdp-func"
+          reason: "NO_RELEVANT_FINDING"
+          comment: "This is a false positive. The file contains the configuration for Doxygen and is not part of the release."
+
+  - provenance:
+      url: "https://github.com/ozymandium/g1fitting.git"
+    choices:
+      - given:
+          source_location:
+            path: "dev/PsdTreeToolbox/src/DeltaCalculator.cpp"
+            start_line: 51
+            end_line: 96
+        choice:
+          purl: "pkg:github/ozymandium/g1fitting"
+          reason: "ORIGINAL_FINDING"
+          comment: "As written in the header code was taken from https://github.com/ebertolazzi/Clothoids"
+      - given:
+          source_location:
+            path: "dev/PsdTreeToolbox/src/DeltaCalculator.cpp"
+            start_line: 124
+            end_line: 151
+        choice:
+          purl: "pkg:github/ozymandium/g1fitting"
+          reason: "ORIGINAL_FINDING"
+          comment: "As written in the header code was taken from https://github.com/ebertolazzi/Clothoids"
+      - given:
+          source_location:
+            path: "dev/PsdTreeToolbox/src/DeltaCalculator.cpp"
+            start_line: 213
+            end_line: 213
+        choice:
+          purl: "pkg:github/ozymandium/g1fitting"
+          reason: "ORIGINAL_FINDING"
+          comment: "As written in the header code was taken from https://github.com/ebertolazzi/Clothoids"
+
+  - provenance:
+      url: "https://github.com/jason-zhj/commstf.git"
+    choices:
+      - given:
+          source_location:
+            path: "dev/Types/inc/Types/GeoPosition.h"
+            start_line: 7
+            end_line: 16
+        choice:
+          purl: "pkg:github/jason-zhj/commstf"
+          reason: "NO_RELEVANT_FINDING"
+          comment: "This is a false positive. The finding is only in the copyright header, where even the text is different. No relevant code similarities are found."
+
+curations:
+  packages:
+    - id: "Conan::cppcodec:0.2.0"
+      curations:
+        comment: "Source code of the component which is mirrored and stored internally"
+        vcs:
+          type: "Git"
+          url: "https://some.repository.com/bitbucket/cppcodec.git"
+          revision: "v0.2"
+    - id: "Conan::GeographicLib:1.52.0"
+      curations:
+        comment: "Source code of the component which is mirrored and stored internally"
+        vcs:
+          type: "Git"
+          url: "https://some.repository.com/bitbucket/geographiclib.git"
+          revision: "r1.52"
+    - id: "Conan::PsdInterface:7.7.0"
+      curations:
+        comment: "Source code of the component which is mirrored and stored internally"
+        vcs:
+          type: "Git"
+          url: "https://some.repository.com/bitbucket/psd-interface.git"
+          revision: "v7.7.0"
+    - id: "PyPI::gevent-websocket:(,0.10.1]"
+      curations:
+        authors:
+        - "Jeffrey Gelens"
+        concluded_license: "Apache 2.0"
+        declared_license_mapping:
+          "Copyright 2011-2017 Jeffrey Gelens <jeffrey@noppo.pro>": "NONE"
+        comment: |
+          Mapping declared license based on
+          [https://github.com/jgelens/gevent-websocket/blob/master/LICENSE].
+  license_findings:
+    - path: "conan_extensions/extensions/commands/sbom/README.md"
+      start_lines: "23"
+      line_count: 6
+      detected_license: "GPL-3.0-only"
+      concluded_license: "NONE"
+      reason: "INCORRECT"
+      comment: "License string appears only in an example command, not an actual license."

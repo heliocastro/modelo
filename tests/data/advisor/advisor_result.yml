@@ -1,0 +1,26 @@
+advisor:
+  name: "VulnerableCode"
+summary:
+  start_time: "2024-06-01T10:00:00Z"
+  end_time: "2024-06-01T10:05:00Z"
+  issues: []
+vulnerabilities:
+  - id: "CVE-2024-1234"
+    summary: "A critical vulnerability in example package."
+    description: "Detailed description of CVE-2024-1234."
+    references:
+      - url: "https://nvd.nist.gov/vuln/detail/CVE-2024-1234"
+        scoring_system: "CVSS:3.1"
+        severity: "HIGH"
+        score: 8.5
+        vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      - url: "https://example.com/CVE-2024-1234"
+        scoring_system: "CVSS2"
+        severity: "MEDIUM"
+        score: 5.0
+  - id: "CVE-2024-5678"
+    references:
+      - url: "https://nvd.nist.gov/vuln/detail/CVE-2024-5678"
+        scoring_system: "CVSS:4.0"
+        severity: "CRITICAL"
+        score: 9.8
