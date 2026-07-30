@@ -1,0 +1,11 @@
+excludes:
+  scopes:
+    - pattern: "devDependencies"
+      reason: "DEV_DEPENDENCY_OF"
+      comment: "Packages for development only."
+license_choices:
+  package_license_choice:
+    - package_id: "NPM::promised-io:0.3.6"
+      license_choices:
+        - given: AFL-2.1 OR BSD-3-Clause
+          choice: BSD-3-Clause

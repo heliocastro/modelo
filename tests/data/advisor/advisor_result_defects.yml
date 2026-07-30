@@ -1,0 +1,12 @@
+advisor:
+  name: "OSV"
+summary:
+  start_time: "2024-06-01T10:00:00Z"
+  end_time: "2024-06-01T10:05:00Z"
+  issues:
+    - timestamp: "2024-06-01T10:02:00Z"
+      source: "OSV"
+      message: "Timeout while querying OSV API."
+      severity: 2
+vulnerabilities: []
+volumes:

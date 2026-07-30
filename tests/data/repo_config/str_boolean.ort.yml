@@ -1,0 +1,35 @@
+analyzer:
+  package_managers:
+    Conan:
+      options:
+        lockfileName: lockfile.lock
+    PIP:
+      options:
+        analyzeSetupPyInsecurely: false
+        pythonVersion: '3.10'
+  enabled_package_managers:
+    - Conan
+    - PIP
+  skip_excluded: true
+excludes:
+  paths:
+    - pattern: '**/examples/**'
+      reason: OTHER
+      comment: Examples are not in scan scope
+    - pattern: '**/conanfile_*.py'
+      reason: TEST_OF
+      comment: Test files are not in scan scope
+    - pattern: '**/doc/**'
+      reason: OTHER
+      comment: Documentation not in scan scope
+resolutions:
+  issues:
+  - message: "IOException: Could not resolve provenance for package 'Maven:com.google.*"
+    reason: CANT_FIX_ISSUE
+    comment: "Google is not publishing sources for all their android libraries, especially the ones from the play-services or MLKit"
+  - message: "IOException: Could not resolve provenance for package 'Maven:com.phrase.*"
+    reason: CANT_FIX_ISSUE
+    comment: "Phrase is licensed by a proprietary license and the sources of their libraries aren't published."
+  - message: "IOException: Could not resolve provenance for package 'Maven:org.jetbrains.kotlin:kotlin-stdlib-common:.*"
+    reason: CANT_FIX_ISSUE
+    comment: "The 'org.jetbrains.kotlin:kotlin-stdlib-common' library is a metadata library for which no sources are published by JetBrains"

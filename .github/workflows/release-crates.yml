@@ -1,0 +1,47 @@
+# SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
+# SPDX-License-Identifier: MIT
+
+# Publishes the `vale` crate to crates.io. Triggered only by a `v*` tag or a manual dispatch.
+#
+# The verify job packages the crate exactly as it would be uploaded and runs the test suite
+# against it; publish runs only if that passes. Authentication uses a crates.io API token in the
+# `CARGO_REGISTRY_TOKEN` secret, scoped to the `crates-io` environment.
+
+name: Release (crates.io)
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify the package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+      - run: cargo test --locked --all-targets
+      # Builds the crate from the packaged tarball, catching files missing from the published
+      # artifact (a `cargo test` on the working tree would not).
+      - run: cargo package --locked
+
+  publish:
+    name: Publish to crates.io
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: crates-io
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+      - run: cargo publish --locked
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}

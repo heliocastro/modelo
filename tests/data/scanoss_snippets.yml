@@ -1,0 +1,2423 @@
+---
+repository:
+  vcs:
+    type: "Git"
+    url: "https://github.com/heliocastro/python-ort"
+    revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+    path: ""
+  vcs_processed:
+    type: "Git"
+    url: "https://github.com/heliocastro/python-ort.git"
+    revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+    path: ""
+  config:
+    analyzer:
+      enabled_package_managers:
+      - "PIP"
+    excludes:
+      paths:
+      - pattern: "tests/data/**"
+        reason: "TEST_OF"
+        comment: "Test data"
+analyzer:
+  start_time: "2026-03-04T17:46:56.154492Z"
+  end_time: "2026-03-04T17:47:01.466348Z"
+  environment:
+    ort_version: "80.0.0"
+    build_jdk: "21.0.10+7-LTS"
+    java_version: "21.0.10"
+    os: "Mac OS X"
+    processors: 12
+    max_memory: 6442450944
+    variables:
+      ORT_CONFIG_DIR: "/Users/dhxbwm7/data/ort-config"
+      HOME: "/Users/dhxbwm7"
+      SHELL: "/bin/zsh"
+      TERM: "xterm-ghostty"
+      JAVA_HOME: "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+      GOPATH: "/Users/dhxbwm7/.local/toolchains/golang"
+  config:
+    allow_dynamic_versions: false
+    enabled_package_managers:
+    - "PIP"
+    skip_excluded: false
+  result:
+    projects:
+    - id: "PIP::requirements.txt:15544ad032100f4f6bda18c9db6be0f489c50070"
+      definition_file_path: "requirements.txt"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/heliocastro/python-ort.git"
+        revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+        path: ""
+      homepage_url: ""
+      scope_names:
+      - "install"
+    packages:
+    - id: "PyPI::annotated-types:0.7.0"
+      purl: "pkg:pypi/annotated-types@0.7.0"
+      authors:
+      - "Adrian Garcia Badaracco <1755071+adriangb@users.noreply.github.com>, Samuel\
+        \ Colvin <s@muelcolvin.com>, Zac Hatfield-Dodds <zac@zhd.dev>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "Reusable constraint types to use with typing.Annotated"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl"
+        hash:
+          value: "1f02e8b43a8fbbc3f3e0d4f0f4bfc8131bcb4eebe8849b8e5c773f3a1c582a53"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz"
+        hash:
+          value: "aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/annotated-types/annotated-types.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::anyio:4.12.1"
+      purl: "pkg:pypi/anyio@4.12.1"
+      authors:
+      - "Alex Grönholm <alex.gronholm@nextday.fi>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "High-level concurrency and networking framework on top of asyncio\
+        \ or Trio"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/38/0e/27be9fdef66e72d64c0cdc3cc2823101b80585f8119b5c112c2e8f5f7dab/anyio-4.12.1-py3-none-any.whl"
+        hash:
+          value: "d405828884fc140aa80a3c667b8beed277f1dfedec42ba031bd6ac3db606ab6c"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/96/f0/5eb65b2bb0d09ac6776f2eb54adee6abe8228ea05b20a5ad0e4945de8aac/anyio-4.12.1.tar.gz"
+        hash:
+          value: "41cfcc3a4c85d3f05c932da7c26d0201ac36f72abd4435ba90d0464a3ffed703"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::argcomplete:3.6.3"
+      purl: "pkg:pypi/argcomplete@3.6.3"
+      authors:
+      - "Andrey Kislyuk <kislyuk@gmail.com>"
+      declared_licenses:
+      - "Apache Software License"
+      declared_licenses_processed:
+        spdx_expression: "Apache-2.0"
+        mapped:
+          Apache Software License: "Apache-2.0"
+      description: "Bash tab completion for argparse"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/74/f5/9373290775639cb67a2fce7f629a1c240dce9f12fe927bc32b2736e16dfc/argcomplete-3.6.3-py3-none-any.whl"
+        hash:
+          value: "f5007b3a600ccac5d25bbce33089211dfd49eab4a7718da3f10e3082525a92ce"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/38/61/0b9ae6399dd4a58d8c1b1dc5a27d6f2808023d0b5dd3104bb99f45a33ff6/argcomplete-3.6.3.tar.gz"
+        hash:
+          value: "62e8ed4fd6a45864acc8235409461b72c9a28ee785a2011cc5eb78318786c89c"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/kislyuk/argcomplete.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::black:26.1.0"
+      purl: "pkg:pypi/black@26.1.0"
+      authors:
+      - "Łukasz Langa <lukasz@langa.pl>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "The uncompromising code formatter."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/e4/3d/51bdb3ecbfadfaf825ec0c75e1de6077422b4afa2091c6c9ba34fbfc0c2d/black-26.1.0-py3-none-any.whl"
+        hash:
+          value: "1054e8e47ebd686e078c0bb0eaf31e6ce69c966058d122f2c0c950311f9f3ede"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/13/88/560b11e521c522440af991d46848a2bde64b5f7202ec14e1f46f9509d328/black-26.1.0.tar.gz"
+        hash:
+          value: "d294ac3340eef9c9eb5d29288e96dc719ff269a88e27b396340459dd85da4c58"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::certifi:2026.2.25"
+      purl: "pkg:pypi/certifi@2026.2.25"
+      authors:
+      - "Kenneth Reitz <me@kennethreitz.com>"
+      declared_licenses:
+      - "MPL-2.0"
+      - "Mozilla Public License 2.0 (MPL 2.0)"
+      declared_licenses_processed:
+        spdx_expression: "MPL-2.0"
+        mapped:
+          Mozilla Public License 2.0 (MPL 2.0): "MPL-2.0"
+      description: "Python package for providing Mozilla's CA Bundle."
+      homepage_url: "https://github.com/certifi/python-certifi"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/9a/3c/c17fb3ca2d9c3acff52e30b309f538586f9f5b9c9cf454f3845fc9af4881/certifi-2026.2.25-py3-none-any.whl"
+        hash:
+          value: "027692e4402ad994f1c42e52a4997a9763c646b73e4096e4d5d6db8af1d6f0fa"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/af/2d/7bf41579a8986e348fa033a31cdd0e4121114f6bce2457e8876010b092dd/certifi-2026.2.25.tar.gz"
+        hash:
+          value: "e887ab5cee78ea814d3472169153c2d12cd43b14bd03329a39a9c6e2e80bfba7"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/certifi/python-certifi.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::click:8.3.1"
+      purl: "pkg:pypi/click@8.3.1"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Composable command line interface toolkit"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl"
+        hash:
+          value: "981153a64e25f12d547d3426c367a4857371575ee7ad18df2a6183ab0545b2a6"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz"
+        hash:
+          value: "12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pallets/click.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::datamodel-code-generator:0.54.0"
+      purl: "pkg:pypi/datamodel-code-generator@0.54.0"
+      authors:
+      - "Koudai Aono <koxudaxi@gmail.com>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "Datamodel Code Generator"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/2b/d9/fd646ea4ae48e374817b2750f5e678a5bf6e10d8924f09cf4cce86a81607/datamodel_code_generator-0.54.0-py3-none-any.whl"
+        hash:
+          value: "3156df7a7e8fa5a7c9a6d50836e5ba5abe0532f6b71eee6d73a0c8e1fb5b7e47"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/be/43/2640cd5293fb5430528166908d6439cf3321bc1c54de5fe58ef100b143a1/datamodel_code_generator-0.54.0.tar.gz"
+        hash:
+          value: "2b183598d049e265146a8224c35d1bb96a80a641ea8ecd2a82e6a0e97b56da6b"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/koxudaxi/datamodel-code-generator.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::genson:1.3.0"
+      purl: "pkg:pypi/genson@1.3.0"
+      authors:
+      - "Jon Wolverton <wolverton.jr@gmail.com>"
+      declared_licenses:
+      - "MIT"
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "GenSON is a powerful, user-friendly JSON Schema generator."
+      homepage_url: "https://github.com/wolverdude/genson/"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/f8/5c/e226de133afd8bb267ec27eead9ae3d784b95b39a287ed404caab39a5f50/genson-1.3.0-py3-none-any.whl"
+        hash:
+          value: "468feccd00274cc7e4c09e84b08704270ba8d95232aa280f65b986139cec67f7"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/c5/cf/2303c8ad276dcf5ee2ad6cf69c4338fd86ef0f471a5207b069adf7a393cf/genson-1.3.0.tar.gz"
+        hash:
+          value: "e02db9ac2e3fd29e65b5286f7135762e2cd8a986537c075b06fc5f1517308e37"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/wolverdude/genson.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::h11:0.16.0"
+      purl: "pkg:pypi/h11@0.16.0"
+      authors:
+      - "Nathaniel J. Smith <njs@pobox.com>"
+      declared_licenses:
+      - "MIT"
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
+      homepage_url: "https://github.com/python-hyper/h11"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl"
+        hash:
+          value: "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/01/ee/02a2c011bdab74c6fb3c75474d40b3052059d95df7e73351460c8588d963/h11-0.16.0.tar.gz"
+        hash:
+          value: "4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/python-hyper/h11.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::httpcore:1.0.9"
+      purl: "pkg:pypi/httpcore@1.0.9"
+      authors:
+      - "Tom Christie <tom@tomchristie.com>"
+      declared_licenses:
+      - "BSD License"
+      declared_licenses_processed:
+        unmapped:
+        - "BSD License"
+      description: "A minimal low-level HTTP client."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl"
+        hash:
+          value: "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/06/94/82699a10bca87a5556c9c59b5963f2d039dbd239f25bc2a63907a05a14cb/httpcore-1.0.9.tar.gz"
+        hash:
+          value: "6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/encode/httpcore.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::httpx:0.28.1"
+      purl: "pkg:pypi/httpx@0.28.1"
+      authors:
+      - "Tom Christie <tom@tomchristie.com>"
+      declared_licenses:
+      - "BSD License"
+      - "BSD-3-Clause"
+      declared_licenses_processed:
+        spdx_expression: "BSD-3-Clause"
+        mapped:
+          BSD License: "BSD-3-Clause"
+      description: "The next generation HTTP client."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl"
+        hash:
+          value: "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz"
+        hash:
+          value: "75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/encode/httpx.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::idna:3.11"
+      purl: "pkg:pypi/idna@3.11"
+      authors:
+      - "Kim Davies <kim+pypi@gumleaf.org>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Internationalized Domain Names in Applications (IDNA)"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl"
+        hash:
+          value: "771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/6f/6d/0703ccc57f3a7233505399edb88de3cbd678da106337b9fcde432b65ed60/idna-3.11.tar.gz"
+        hash:
+          value: "795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/kjd/idna.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::inflect:7.5.0"
+      purl: "pkg:pypi/inflect@7.5.0"
+      authors:
+      - "Paul Dyson <pwdyson@yahoo.com>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "Correctly generate plurals, singular nouns, ordinals, indefinite\
+        \ articles"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/8a/eb/427ed2b20a38a4ee29f24dbe4ae2dafab198674fe9a85e3d6adf9e5f5f41/inflect-7.5.0-py3-none-any.whl"
+        hash:
+          value: "2aea70e5e70c35d8350b8097396ec155ffd68def678c7ff97f51aa69c1d92344"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/78/c6/943357d44a21fd995723d07ccaddd78023eace03c1846049a2645d4324a3/inflect-7.5.0.tar.gz"
+        hash:
+          value: "faf19801c3742ed5a05a8ce388e0d8fe1a07f8d095c82201eb904f5d27ad571f"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/jaraco/inflect.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::iniconfig:2.3.0"
+      purl: "pkg:pypi/iniconfig@2.3.0"
+      authors:
+      - "Ronny Pfannschmidt <opensource@ronnypfannschmidt.de>, Holger Krekel <holger.krekel@gmail.com>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "brain-dead simple config-ini parsing"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/cb/b1/3846dd7f199d53cb17f49cba7e651e9ce294d8497c8c150530ed11865bb8/iniconfig-2.3.0-py3-none-any.whl"
+        hash:
+          value: "f631c04d2c48c52b84d0d0549c99ff3859c98df65b3101406327ecc7d53fbf12"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/72/34/14ca021ce8e5dfedc35312d08ba8bf51fdd999c576889fc2c24cb97f4f10/iniconfig-2.3.0.tar.gz"
+        hash:
+          value: "c76315c77db068650d49c5b56314774a7804df16fee4402c1f19d6d15d8c4730"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::isort:7.0.0"
+      purl: "pkg:pypi/isort@7.0.0"
+      authors:
+      - "Timothy Crosley <timothy.crosley@gmail.com>, staticdev <staticdev-support@proton.me>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "A Python utility / library to sort Python imports."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/7f/ed/e3705d6d02b4f7aea715a353c8ce193efd0b5db13e204df895d38734c244/isort-7.0.0-py3-none-any.whl"
+        hash:
+          value: "1bcabac8bc3c36c7fb7b98a76c8abb18e0f841a3ba81decac7691008592499c1"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/63/53/4f3c058e3bace40282876f9b553343376ee687f3c35a525dc79dbd450f88/isort-7.0.0.tar.gz"
+        hash:
+          value: "5513527951aadb3ac4292a41a16cbc50dd1642432f5e8c20057d414bdafb4187"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::jinja2:3.1.6"
+      purl: "pkg:pypi/jinja2@3.1.6"
+      declared_licenses:
+      - "BSD License"
+      declared_licenses_processed:
+        unmapped:
+        - "BSD License"
+      description: "A very fast and expressive template engine."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl"
+        hash:
+          value: "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz"
+        hash:
+          value: "0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pallets/jinja.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::markdown-it-py:4.0.0"
+      purl: "pkg:pypi/markdown-it-py@4.0.0"
+      authors:
+      - "Chris Sewell <chrisj_sewell@hotmail.com>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "Python port of markdown-it. Markdown parsing, done right!"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/94/54/e7d793b573f298e1c9013b8c4dade17d481164aa517d1d7148619c2cedbf/markdown_it_py-4.0.0-py3-none-any.whl"
+        hash:
+          value: "87327c59b172c5011896038353a81343b6754500a08cd7a4973bb48c6d578147"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/5b/f5/4ec618ed16cc4f8fb3b701563655a69816155e79e24a17b651541804721d/markdown_it_py-4.0.0.tar.gz"
+        hash:
+          value: "cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::markupsafe:3.0.3"
+      purl: "pkg:pypi/markupsafe@3.0.3"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Safely add untrusted strings to HTML/XML markup."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/b5/99/16a5eb2d140087ebd97180d95249b00a03aa87e29cc224056274f2e45fd6/markupsafe-3.0.3-cp313-cp313-musllinux_1_2_x86_64.whl"
+        hash:
+          value: "8485f406a96febb5140bfeca44a73e3ce5116b2501ac54fe953e488fb1d03b12"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/7e/99/7690b6d4034fffd95959cbe0c02de8deb3098cc577c67bb6a24fe5d7caa7/markupsafe-3.0.3.tar.gz"
+        hash:
+          value: "722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pallets/markupsafe.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::mdurl:0.1.2"
+      purl: "pkg:pypi/mdurl@0.1.2"
+      authors:
+      - "Taneli Hukkinen <hukkin@users.noreply.github.com>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "Markdown URL utilities"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl"
+        hash:
+          value: "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz"
+        hash:
+          value: "bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::more-itertools:10.8.0"
+      purl: "pkg:pypi/more-itertools@10.8.0"
+      authors:
+      - "Erik Rose <erikrose@grinchcentral.com>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "More routines for operating on iterables, beyond itertools"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/a4/8e/469e5a4a2f5855992e425f3cb33804cc07bf18d48f2db061aec61ce50270/more_itertools-10.8.0-py3-none-any.whl"
+        hash:
+          value: "52d4362373dcf7c52546bc4af9a86ee7c4579df9a8dc268be0a2f949d376cc9b"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/ea/5d/38b681d3fce7a266dd9ab73c66959406d565b3e85f21d5e66e1181d93721/more_itertools-10.8.0.tar.gz"
+        hash:
+          value: "f638ddf8a1a0d134181275fb5d58b086ead7c6a72429ad725c67503f13ba30bd"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::mypy-extensions:1.1.0"
+      purl: "pkg:pypi/mypy-extensions@1.1.0"
+      authors:
+      - "The mypy developers <jukka.lehtosalo@iki.fi>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Type system extensions for programs checked with the mypy type\
+        \ checker."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl"
+        hash:
+          value: "1be4cccdb0f2482337c4743e60421de3a356cd97508abadd57d47403e94f5505"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/a2/6e/371856a3fb9d31ca8dac321cda606860fa4548858c0cc45d9d1d4ca2628b/mypy_extensions-1.1.0.tar.gz"
+        hash:
+          value: "52e68efc3284861e772bbcd66823fde5ae21fd2fdb51c62a211403730b916558"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::packageurl-python:0.17.6"
+      purl: "pkg:pypi/packageurl-python@0.17.6"
+      authors:
+      - "the purl authors"
+      declared_licenses:
+      - "MIT"
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "A purl aka. Package URL parser and builder"
+      homepage_url: "https://github.com/package-url/packageurl-python"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/b1/2f/c7277b7615a93f51b5fbc1eacfc1b75e8103370e786fd8ce2abf6e5c04ab/packageurl_python-0.17.6-py3-none-any.whl"
+        hash:
+          value: "31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/f5/d6/3b5a4e3cfaef7a53869a26ceb034d1ff5e5c27c814ce77260a96d50ab7bb/packageurl_python-0.17.6.tar.gz"
+        hash:
+          value: "1252ce3a102372ca6f86eb968e16f9014c4ba511c5c37d95a7f023e2ca6e5c25"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/package-url/packageurl-python.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::packaging:26.0"
+      purl: "pkg:pypi/packaging@26.0"
+      authors:
+      - "Donald Stufft <donald@stufft.io>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Core utilities for Python packages"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/b7/b9/c538f279a4e237a006a2c98387d081e9eb060d203d8ed34467cc0f0b9b53/packaging-26.0-py3-none-any.whl"
+        hash:
+          value: "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+        hash:
+          value: "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pypa/packaging.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::pathspec:1.0.4"
+      purl: "pkg:pypi/pathspec@1.0.4"
+      authors:
+      - "\"Caleb P. Burns\" <cpburnz@gmail.com>"
+      declared_licenses:
+      - "Mozilla Public License 2.0 (MPL 2.0)"
+      declared_licenses_processed:
+        spdx_expression: "MPL-2.0"
+        mapped:
+          Mozilla Public License 2.0 (MPL 2.0): "MPL-2.0"
+      description: "Utility library for gitignore style pattern matching of file paths."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/ef/3c/2c197d226f9ea224a9ab8d197933f9da0ae0aac5b6e0f884e2b8d9c8e9f7/pathspec-1.0.4-py3-none-any.whl"
+        hash:
+          value: "fb6ae2fd4e7c921a165808a552060e722767cfa526f99ca5156ed2ce45a5c723"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/fa/36/e27608899f9b8d4dff0617b2d9ab17ca5608956ca44461ac14ac48b44015/pathspec-1.0.4.tar.gz"
+        hash:
+          value: "0210e2ae8a21a9137c0d470578cb0e595af87edaa6ebf12ff176f14a02e0e645"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/cpburnz/python-pathspec.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::platformdirs:4.9.2"
+      purl: "pkg:pypi/platformdirs@4.9.2"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "A small Python package for determining appropriate platform-specific\
+        \ dirs, e.g. a `user data dir`."
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/48/31/05e764397056194206169869b50cf2fee4dbbbc71b344705b9c0d878d4d8/platformdirs-4.9.2-py3-none-any.whl"
+        hash:
+          value: "9170634f126f8efdae22fb58ae8a0eaa86f38365bc57897a6c4f781d1f5875bd"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
+        hash:
+          value: "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/tox-dev/platformdirs.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::pluggy:1.6.0"
+      purl: "pkg:pypi/pluggy@1.6.0"
+      authors:
+      - "Holger Krekel <holger@merlinux.eu>"
+      declared_licenses:
+      - "MIT"
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "plugin and hook calling mechanisms for python"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl"
+        hash:
+          value: "e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/f9/e2/3e91f31a7d2b083fe6ef3fa267035b518369d9511ffab804f839851d2779/pluggy-1.6.0.tar.gz"
+        hash:
+          value: "7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::pydantic:2.12.5"
+      purl: "pkg:pypi/pydantic@2.12.5"
+      authors:
+      - "Samuel Colvin <s@muelcolvin.com>, Eric Jolibois <em.jolibois@gmail.com>,\
+        \ Hasan Ramezani <hasan.r67@gmail.com>, Adrian Garcia Badaracco <1755071+adriangb@users.noreply.github.com>,\
+        \ Terrence Dorsey <terry@pydantic.dev>, David Montague <david@pydantic.dev>,\
+        \ Serge Matveenko <lig@countzero.co>, Marcelo Trylesinski <marcelotryle@gmail.com>,\
+        \ Sydney Runkle <sydneymarierunkle@gmail.com>, David Hewitt <mail@davidhewitt.io>,\
+        \ Alex Hall <alex.mojaki@gmail.com>, Victorien Plot <contact@vctrn.dev>, Douwe\
+        \ Maan <hi@douwe.me>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "# Pydantic Validation"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/5a/87/b70ad306ebb6f9b585f114d0ac2137d792b48be34d732d60e597c2f8465a/pydantic-2.12.5-py3-none-any.whl"
+        hash:
+          value: "e561593fccf61e8a20fc46dfc2dfe075b8be7d0188df33f221ad1f0139180f9d"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/69/44/36f1a6e523abc58ae5f928898e4aca2e0ea509b5aa6f6f392a5d882be928/pydantic-2.12.5.tar.gz"
+        hash:
+          value: "4d351024c75c0f085a9febbb665ce8c0c6ec5d30e903bdb6394b7ede26aebb49"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pydantic/pydantic.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::pydantic-core:2.41.5"
+      purl: "pkg:pypi/pydantic-core@2.41.5"
+      authors:
+      - "Samuel Colvin <s@muelcolvin.com>, Adrian Garcia Badaracco <1755071+adriangb@users.noreply.github.com>,\
+        \ David Montague <david@pydantic.dev>, David Hewitt <mail@davidhewitt.dev>,\
+        \ Sydney Runkle <sydneymarierunkle@gmail.com>, Victorien Plot <contact@vctrn.dev>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Core functionality for Pydantic validation and serialization"
+      homepage_url: "https://github.com/pydantic/pydantic-core"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/cf/4e/35a80cae583a37cf15604b44240e45c05e04e86f9cfd766623149297e971/pydantic_core-2.41.5-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        hash:
+          value: "406bf18d345822d6c21366031003612b9c77b3e29ffdb0f612367352aab7d586"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/71/70/23b021c950c2addd24ec408e9ab05d59b035b39d97cdc1130e1bce647bb6/pydantic_core-2.41.5.tar.gz"
+        hash:
+          value: "08daa51ea16ad373ffd5e7606252cc32f07bc72b28284b6bc9c6df804816476e"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pydantic/pydantic-core.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::pygments:2.19.2"
+      purl: "pkg:pypi/pygments@2.19.2"
+      authors:
+      - "Georg Brandl <georg@python.org>"
+      declared_licenses:
+      - "BSD License"
+      - "BSD-2-Clause"
+      declared_licenses_processed:
+        spdx_expression: "BSD-2-Clause"
+        mapped:
+          BSD License: "BSD-2-Clause"
+      description: "Pygments"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl"
+        hash:
+          value: "86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz"
+        hash:
+          value: "636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pygments/pygments.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::pytest:9.0.2"
+      purl: "pkg:pypi/pytest@9.0.2"
+      authors:
+      - "Holger Krekel, Bruno Oliveira, Ronny Pfannschmidt, Floris Bruynooghe, Brianna\
+        \ Laugher, Florian Bruhin, Others (See AUTHORS)"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "pytest: simple powerful testing with Python"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/3b/ab/b3226f0bd7cdcf710fbede2b3548584366da3b19b5021e74f5bde2a8fa3f/pytest-9.0.2-py3-none-any.whl"
+        hash:
+          value: "711ffd45bf766d5264d487b917733b453d917afd2b0ad65223959f59089f875b"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/d1/db/7ef3487e0fb0049ddb5ce41d3a49c235bf9ad299b6a25d5780a89f19230f/pytest-9.0.2.tar.gz"
+        hash:
+          value: "75186651a92bd89611d1d9fc20f0b4345fd827c41ccd5c299a868a05d70edf11"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pytest-dev/pytest.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::pytokens:0.4.1"
+      purl: "pkg:pypi/pytokens@0.4.1"
+      authors:
+      - "Tushar Sadhwani <tushar.sadhwani000@gmail.com>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "# pytokens"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/e0/d2/afe5c7f8607018beb99971489dbb846508f1b8f351fcefc225fcf4b2adc0/pytokens-0.4.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        hash:
+          value: "29d1d8fb1030af4d231789959f21821ab6325e463f0503a61d204343c9b355d1"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/b6/34/b4e015b99031667a7b960f888889c5bd34ef585c85e1cb56a594b92836ac/pytokens-0.4.1.tar.gz"
+        hash:
+          value: "292052fe80923aae2260c073f822ceba21f3872ced9a68bb7953b348e561179a"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::pyyaml:6.0.3"
+      purl: "pkg:pypi/pyyaml@6.0.3"
+      authors:
+      - "Kirill Simonov <xi@resolvent.net>"
+      declared_licenses:
+      - "MIT"
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "YAML parser and emitter for Python"
+      homepage_url: "https://pyyaml.org/"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/74/27/e5b8f34d02d9995b80abcef563ea1f8b56d20134d8f4e5e81733b1feceb2/pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        hash:
+          value: "0f29edc409a6392443abf94b9cf89ce99889a1dd5376d94316ae5145dfedd5d6"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/05/8e/961c0007c59b8dd7729d542c61a4d537767a59645b82a0b521206e1e25c2/pyyaml-6.0.3.tar.gz"
+        hash:
+          value: "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/yaml/pyyaml.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::rich:14.3.3"
+      purl: "pkg:pypi/rich@14.3.3"
+      authors:
+      - "Will McGugan <willmcgugan@gmail.com>"
+      declared_licenses:
+      - "MIT"
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "Render rich text, tables, progress bars, syntax highlighting,\
+        \ markdown and more to the terminal"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/14/25/b208c5683343959b670dc001595f2f3737e051da617f66c31f7c4fa93abc/rich-14.3.3-py3-none-any.whl"
+        hash:
+          value: "793431c1f8619afa7d3b52b2cdec859562b950ea0d4b6b505397612db8d5362d"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/b3/c6/f3b320c27991c46f43ee9d856302c70dc2d0fb2dba4842ff739d5f46b393/rich-14.3.3.tar.gz"
+        hash:
+          value: "b8daa0b9e4eef54dd8cf7c86c03713f53241884e814f4e2f5fb342fe520f639b"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::ruff:0.15.4"
+      purl: "pkg:pypi/ruff@0.15.4"
+      authors:
+      - "\"Astral Software Inc.\" <hey@astral.sh>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "<!-- Begin section: Overview -->"
+      homepage_url: "https://docs.astral.sh/ruff"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/ff/90/bf134f4c1e5243e62690e09d63c55df948a74084c8ac3e48a88468314da6/ruff-0.15.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        hash:
+          value: "451a2e224151729b3b6c9ffb36aed9091b2996fe4bdbd11f47e27d8f2e8888ec"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/da/31/d6e536cdebb6568ae75a7f00e4b4819ae0ad2640c3604c305a0428680b0c/ruff-0.15.4.tar.gz"
+        hash:
+          value: "3412195319e42d634470cc97aa9803d07e9d5c9223b99bcb1518f0c725f26ae1"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::ty:0.0.20"
+      purl: "pkg:pypi/ty@0.0.20"
+      authors:
+      - "\"Astral Software Inc.\" <hey@astral.sh>"
+      declared_licenses:
+      - "MIT License"
+      declared_licenses_processed:
+        spdx_expression: "MIT"
+        mapped:
+          MIT License: "MIT"
+      description: "An extremely fast Python type checker, written in Rust."
+      homepage_url: "https://github.com/astral-sh/ty/"
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/32/a0/a532c2048533347dff48e9ca98bd86d2c224356e101688a8edaf8d6973fb/ty-0.0.20-py3-none-musllinux_1_2_x86_64.whl"
+        hash:
+          value: "d52f7c9ec6e363e094b3c389c344d5a140401f14a77f0625e3f28c21918552f5"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/56/95/8de69bb98417227b01f1b1d743c819d6456c9fd140255b6124b05b17dfd6/ty-0.0.20.tar.gz"
+        hash:
+          value: "ebba6be7974c14efbb2a9adda6ac59848f880d7259f089dfa72a093039f1dcc6"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/astral-sh/ty.git"
+        revision: ""
+        path: ""
+    - id: "PyPI::typeguard:4.5.1"
+      purl: "pkg:pypi/typeguard@4.5.1"
+      authors:
+      - "Alex Grönholm <alex.gronholm@nextday.fi>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Run-time type checker for Python"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/91/88/b55b3117287a8540b76dbdd87733808d4d01c8067a3b339408c250bb3600/typeguard-4.5.1-py3-none-any.whl"
+        hash:
+          value: "44d2bf329d49a244110a090b55f5f91aa82d9a9834ebfd30bcc73651e4a8cc40"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/2b/e8/66e25efcc18542d58706ce4e50415710593721aae26e794ab1dec34fb66f/typeguard-4.5.1.tar.gz"
+        hash:
+          value: "f6f8ecbbc819c9bc749983cc67c02391e16a9b43b8b27f15dc70ed7c4a007274"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::types-pyyaml:6.0.12.20250915"
+      purl: "pkg:pypi/types-pyyaml@6.0.12.20250915"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "## Typing stubs for PyYAML"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/bd/e0/1eed384f02555dde685fff1a1ac805c1c7dcb6dd019c916fe659b1c1f9ec/types_pyyaml-6.0.12.20250915-py3-none-any.whl"
+        hash:
+          value: "e7d4d9e064e89a3b3cae120b4990cd370874d2bf12fa5f46c97018dd5d3c9ab6"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/7e/69/3c51b36d04da19b92f9e815be12753125bd8bc247ba0470a982e6979e71c/types_pyyaml-6.0.12.20250915.tar.gz"
+        hash:
+          value: "0f8b54a528c303f0e6f7165687dd33fafa81c807fcac23f632b63aa624ced1d3"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::typing-extensions:4.15.0"
+      purl: "pkg:pypi/typing-extensions@4.15.0"
+      authors:
+      - "\"Guido van Rossum, Jukka Lehtosalo, Łukasz Langa, Michael Lee\" <levkivskyi@gmail.com>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Backported and Experimental Type Hints for Python 3.9+"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl"
+        hash:
+          value: "f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz"
+        hash:
+          value: "0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+    - id: "PyPI::typing-inspection:0.4.2"
+      purl: "pkg:pypi/typing-inspection@0.4.2"
+      authors:
+      - "Victorien Plot <contact@vctrn.dev>"
+      declared_licenses: []
+      declared_licenses_processed: {}
+      description: "Runtime typing introspection tools"
+      homepage_url: ""
+      binary_artifact:
+        url: "https://files.pythonhosted.org/packages/dc/9b/47798a6c91d8bdb567fe2698fe81e0c6b7cb7ef4d13da4114b41d239f65d/typing_inspection-0.4.2-py3-none-any.whl"
+        hash:
+          value: "4ed1cacbdc298c220f1bd249ed5287caa16f34d44ef4e9c3d0cbad5b521545e7"
+          algorithm: "SHA-256"
+      source_artifact:
+        url: "https://files.pythonhosted.org/packages/55/e3/70399cb7dd41c10ac53367ae42139cf4b1ca5f36bb3dc6c9d33acdb43655/typing_inspection-0.4.2.tar.gz"
+        hash:
+          value: "ba561c48a67c5958007083d386c3295464928b01faa735ab8547c5692e87f464"
+          algorithm: "SHA-256"
+      vcs:
+        type: ""
+        url: ""
+        revision: ""
+        path: ""
+      vcs_processed:
+        type: "Git"
+        url: "https://github.com/pydantic/typing-inspection.git"
+        revision: ""
+        path: ""
+    dependency_graphs:
+      PIP:
+        packages:
+        - "PyPI::annotated-types:0.7.0"
+        - "PyPI::anyio:4.12.1"
+        - "PyPI::argcomplete:3.6.3"
+        - "PyPI::black:26.1.0"
+        - "PyPI::certifi:2026.2.25"
+        - "PyPI::click:8.3.1"
+        - "PyPI::datamodel-code-generator:0.54.0"
+        - "PyPI::genson:1.3.0"
+        - "PyPI::h11:0.16.0"
+        - "PyPI::httpcore:1.0.9"
+        - "PyPI::httpx:0.28.1"
+        - "PyPI::idna:3.11"
+        - "PyPI::inflect:7.5.0"
+        - "PyPI::iniconfig:2.3.0"
+        - "PyPI::isort:7.0.0"
+        - "PyPI::jinja2:3.1.6"
+        - "PyPI::markdown-it-py:4.0.0"
+        - "PyPI::markupsafe:3.0.3"
+        - "PyPI::mdurl:0.1.2"
+        - "PyPI::more-itertools:10.8.0"
+        - "PyPI::mypy-extensions:1.1.0"
+        - "PyPI::packageurl-python:0.17.6"
+        - "PyPI::packaging:26.0"
+        - "PyPI::pathspec:1.0.4"
+        - "PyPI::platformdirs:4.9.2"
+        - "PyPI::pluggy:1.6.0"
+        - "PyPI::pydantic-core:2.41.5"
+        - "PyPI::pydantic:2.12.5"
+        - "PyPI::pygments:2.19.2"
+        - "PyPI::pytest:9.0.2"
+        - "PyPI::pytokens:0.4.1"
+        - "PyPI::pyyaml:6.0.3"
+        - "PyPI::rich:14.3.3"
+        - "PyPI::ruff:0.15.4"
+        - "PyPI::ty:0.0.20"
+        - "PyPI::typeguard:4.5.1"
+        - "PyPI::types-pyyaml:6.0.12.20250915"
+        - "PyPI::typing-extensions:4.15.0"
+        - "PyPI::typing-inspection:0.4.2"
+        scopes:
+          :requirements.txt:15544ad032100f4f6bda18c9db6be0f489c50070:install:
+          - root: 6
+          - root: 10
+          - root: 21
+          - root: 29
+          - root: 32
+          - root: 33
+          - root: 34
+          - root: 36
+        nodes:
+        - pkg: 2
+        - pkg: 5
+        - pkg: 20
+        - pkg: 22
+        - pkg: 23
+        - pkg: 24
+        - pkg: 30
+        - pkg: 3
+        - pkg: 7
+        - pkg: 19
+        - pkg: 37
+        - pkg: 35
+        - pkg: 12
+        - pkg: 14
+        - pkg: 17
+        - pkg: 15
+        - {}
+        - pkg: 26
+        - pkg: 38
+        - pkg: 27
+        - pkg: 31
+        - pkg: 6
+        - pkg: 11
+        - pkg: 1
+        - pkg: 4
+        - pkg: 8
+        - pkg: 9
+        - pkg: 10
+        - pkg: 21
+        - pkg: 13
+        - pkg: 25
+        - pkg: 28
+        - pkg: 29
+        - pkg: 18
+        - pkg: 16
+        - pkg: 32
+        - pkg: 33
+        - pkg: 34
+        - pkg: 36
+        edges:
+        - from: 7
+          to: 1
+        - from: 7
+          to: 2
+        - from: 7
+          to: 3
+        - from: 7
+          to: 4
+        - from: 7
+          to: 5
+        - from: 7
+          to: 6
+        - from: 11
+          to: 10
+        - from: 12
+          to: 9
+        - from: 12
+          to: 11
+        - from: 15
+          to: 14
+        - from: 17
+          to: 10
+        - from: 18
+          to: 10
+        - from: 19
+          to: 10
+        - from: 19
+          to: 16
+        - from: 19
+          to: 17
+        - from: 19
+          to: 18
+        - from: 21
+          to: 0
+        - from: 21
+          to: 3
+        - from: 21
+          to: 7
+        - from: 21
+          to: 8
+        - from: 21
+          to: 12
+        - from: 21
+          to: 13
+        - from: 21
+          to: 15
+        - from: 21
+          to: 19
+        - from: 21
+          to: 20
+        - from: 23
+          to: 22
+        - from: 26
+          to: 24
+        - from: 26
+          to: 25
+        - from: 27
+          to: 22
+        - from: 27
+          to: 23
+        - from: 27
+          to: 24
+        - from: 27
+          to: 26
+        - from: 32
+          to: 3
+        - from: 32
+          to: 29
+        - from: 32
+          to: 30
+        - from: 32
+          to: 31
+        - from: 34
+          to: 33
+        - from: 35
+          to: 31
+        - from: 35
+          to: 34
+scanner:
+  start_time: "2026-03-04T17:47:15.577755Z"
+  end_time: "2026-03-04T17:47:25.818236Z"
+  environment:
+    ort_version: "80.0.0"
+    build_jdk: "21.0.10+7-LTS"
+    java_version: "21.0.10"
+    os: "Mac OS X"
+    processors: 12
+    max_memory: 6442450944
+    variables:
+      ORT_CONFIG_DIR: "/Users/dhxbwm7/data/ort-config"
+      HOME: "/Users/dhxbwm7"
+      SHELL: "/bin/zsh"
+      TERM: "xterm-ghostty"
+      JAVA_HOME: "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+      GOPATH: "/Users/dhxbwm7/.local/toolchains/golang"
+  config:
+    skip_concluded: true
+    skip_excluded: true
+    include_files_without_findings: false
+    archive:
+      enabled: true
+    detected_license_mapping:
+      BSD (Three Clause License): "BSD-3-clause"
+      CPL-1.0: "EPL-2.0"
+      EPL-1.0: "EPL-2.0"
+      LicenseRef-scancode-agpl-generic-additional-terms: "NOASSERTION"
+      LicenseRef-scancode-free-unknown: "NOASSERTION"
+      LicenseRef-scancode-generic-cla: "NOASSERTION"
+      LicenseRef-scancode-generic-exception: "NOASSERTION"
+      LicenseRef-scancode-generic-export-compliance: "NOASSERTION"
+      LicenseRef-scancode-generic-tos: "NOASSERTION"
+      LicenseRef-scancode-generic-trademark: "NOASSERTION"
+      LicenseRef-scancode-gpl-generic-additional-terms: "NOASSERTION"
+      LicenseRef-scancode-other-copyleft: "NOASSERTION"
+      LicenseRef-scancode-other-permissive: "NOASSERTION"
+      LicenseRef-scancode-patent-disclaimer: "NOASSERTION"
+      LicenseRef-scancode-unknown: "NOASSERTION"
+      LicenseRef-scancode-unknown-license-reference: "NOASSERTION"
+      LicenseRef-scancode-unknown-spdx: "NOASSERTION"
+      LicenseRef-scancode-warranty-disclaimer: "NOASSERTION"
+    file_list_storage:
+      file_storage: null
+      postgres_storage: null
+    scanners:
+      ScanCode:
+        options:
+          commandLine: "--copyright,--license,--info,--strip-root,--timeout,600"
+          commandLineNonConfig: "--processes,3"
+          preferFileLicense: "true"
+      SCANOSS:
+        options:
+          apiUrl: "https://optima.cariad.digital/api/v1/scanoss"
+          writeToStorage: "true"
+    storages:
+      postgres:
+        connection:
+          url: "jdbc:postgresql://127.0.0.1:5888/ort?sslmode=disable"
+          schema: "public"
+          username: "postgres"
+          sslmode: "false"
+        type: "PROVENANCE_BASED"
+    storage_readers:
+    - "postgres"
+    storage_writers:
+    - "postgres"
+    ignore_patterns:
+    - "**/*.ort.yml"
+    - "**/*.spdx.yml"
+    - "**/*.spdx.yaml"
+    - "**/*.spdx.json"
+    - "**/META-INF/DEPENDENCIES"
+    - "**/META-INF/DEPENDENCIES.txt"
+    - "**/META-INF/NOTICE"
+    - "**/META-INF/NOTICE.txt"
+    provenance_storage:
+      file_storage: null
+      postgres_storage: null
+  provenances:
+  - id: "PIP::requirements.txt:15544ad032100f4f6bda18c9db6be0f489c50070"
+    package_provenance:
+      vcs_info:
+        type: "Git"
+        url: "https://github.com/heliocastro/python-ort.git"
+        revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+        path: ""
+      resolved_revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+  scan_results:
+  - provenance:
+      vcs_info:
+        type: "Git"
+        url: "https://github.com/heliocastro/python-ort.git"
+        revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+        path: ""
+      resolved_revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+    scanner:
+      name: "SCANOSS"
+      version: "0.12.1"
+      configuration: ""
+    summary:
+      start_time: "2026-03-04T17:47:21.487708Z"
+      end_time: "2026-03-04T17:47:23.583070Z"
+      snippets:
+      - source_location:
+          path: "src/ort/models/analyzer_result.py"
+          start_line: 16
+          end_line: 41
+        snippets:
+        - score: 60.0
+          location:
+            path: "model/src/main/kotlin/AnalyzerResult.kt"
+            start_line: 31
+            end_line: 56
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "86eb0bcdef039e1cde377c92f5b7c44c"
+            file_url: "https://api.osskb.org/file_contents/86eb0bcdef039e1cde377c92f5b7c44c"
+            source_hash: "92e61aa942e07cd9a4f2532e009a5de7"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/defect.py"
+          start_line: 13
+          end_line: 85
+        snippets:
+        - score: 83.0
+          location:
+            path: "model/src/main/kotlin/Defect.kt"
+            start_line: 30
+            end_line: 102
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "a80685f3fb8d8d3a7baf0f90dc5db31f"
+            file_url: "https://api.osskb.org/file_contents/a80685f3fb8d8d3a7baf0f90dc5db31f"
+            source_hash: "f9e2684212ccee7ab121a13ac73c51b5"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/dependency_graph.py"
+          start_line: 18
+          end_line: 88
+        snippets:
+        - score: 71.0
+          location:
+            path: "main/DependencyGraph.kt"
+            start_line: 40
+            end_line: 110
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "8c98907b15d954e2d352a7913c167799"
+            file_url: "https://api.osskb.org/file_contents/8c98907b15d954e2d352a7913c167799"
+            source_hash: "e3a96f9afc3c8f99358c0cf8a8d2a9e0"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/dependency_graph_edge.py"
+          start_line: 12
+          end_line: 17
+        snippets:
+        - score: 17.0
+          location:
+            path: "main/DependencyGraph.kt"
+            start_line: 386
+            end_line: 391
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "8c98907b15d954e2d352a7913c167799"
+            file_url: "https://api.osskb.org/file_contents/8c98907b15d954e2d352a7913c167799"
+            source_hash: "4e86dbe0ea99364f34f3e33f4de0f825"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/dependency_graph_node.py"
+          start_line: 13
+          end_line: 40
+        snippets:
+        - score: 52.0
+          location:
+            path: "main/DependencyGraph.kt"
+            start_line: 349
+            end_line: 376
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "8c98907b15d954e2d352a7913c167799"
+            file_url: "https://api.osskb.org/file_contents/8c98907b15d954e2d352a7913c167799"
+            source_hash: "58e1b6afcdc0f18779b9928f0a7efae7"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/dependency_reference.py"
+          start_line: 15
+          end_line: 49
+        snippets:
+        - score: 66.0
+          location:
+            path: "main/DependencyGraph.kt"
+            start_line: 296
+            end_line: 330
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "8c98907b15d954e2d352a7913c167799"
+            file_url: "https://api.osskb.org/file_contents/8c98907b15d954e2d352a7913c167799"
+            source_hash: "b30825e16d3b333667168d4d1e7ae1f8"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/identifier.py"
+          start_line: 16
+          end_line: 57
+        snippets:
+        - score: 61.0
+          location:
+            path: "model/src/main/kotlin/Identifier.kt"
+            start_line: 33
+            end_line: 74
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "7da74d446ce8d940a10cdd3e1ff0a81e"
+            file_url: "https://api.osskb.org/file_contents/7da74d446ce8d940a10cdd3e1ff0a81e"
+            source_hash: "8743e380ef7c44147e374e249ef19951"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/ort_result.py"
+          start_line: 14
+          end_line: 42
+        snippets:
+        - score: 66.0
+          location:
+            path: "model/src/main/kotlin/OrtResult.kt"
+            start_line: 37
+            end_line: 65
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "03091fe83a238c941ac233b79a5ecae1"
+            file_url: "https://api.osskb.org/file_contents/03091fe83a238c941ac233b79a5ecae1"
+            source_hash: "7cb6822cfad4ce6beb2f4ab00d7dd406"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/package.py"
+          start_line: 17
+          end_line: 116
+        snippets:
+        - score: 75.0
+          location:
+            path: "model/src/main/kotlin/Package.kt"
+            start_line: 34
+            end_line: 133
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "8618e1d6994aeed61904246d43ca5db0"
+            file_url: "https://api.osskb.org/file_contents/8618e1d6994aeed61904246d43ca5db0"
+            source_hash: "c21384e85970ca2f1ade3103b35c4a5b"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/package_curation_data.py"
+          start_line: 42
+          end_line: 47
+        snippets:
+        - score: 9.0
+          location:
+            path: "hermine-cdf47b34/hermine/cube/utils/ort.py"
+            start_line: 42
+            end_line: 47
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://gitlab.com/hermine-project/hermine.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:gitlab/hermine-project/hermine"
+          license: "AGPL-3.0-only"
+          additional_data:
+            file_hash: "45f5b0ec20f4143273d9333530df7792"
+            file_url: "https://api.osskb.org/file_contents/45f5b0ec20f4143273d9333530df7792"
+            source_hash: "3d28cb07717fb1097ad86ec18416e38d"
+      - source_location:
+          path: "src/ort/models/package_linkage.py"
+          start_line: 15
+          end_line: 27
+        snippets:
+        - score: 37.0
+          location:
+            path: "model/src/main/kotlin/PackageLinkage.kt"
+            start_line: 27
+            end_line: 39
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "68eb07ceac82f5f73eb651e11ce400e3"
+            file_url: "https://api.osskb.org/file_contents/68eb07ceac82f5f73eb651e11ce400e3"
+            source_hash: "b8a12cc358df01f32d25c5713dc5223f"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/package_reference.py"
+          start_line: 14
+          end_line: 28
+        snippets:
+        - score: 43.0
+          location:
+            path: "PackageReference.kt"
+            start_line: 32
+            end_line: 46
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "570a5657aeb89804bbe6486dde07be75"
+            file_url: "https://api.osskb.org/file_contents/570a5657aeb89804bbe6486dde07be75"
+            source_hash: "6de5f0299efa1d1852fde5353f5aed75"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/project.py"
+          start_line: 16
+          end_line: 42
+        snippets:
+        - score: 40.0
+          location:
+            path: "main/Project.kt"
+            start_line: 35
+            end_line: 61
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "cfaaa208ff90c7a8479b9b38515df788"
+            file_url: "https://api.osskb.org/file_contents/cfaaa208ff90c7a8479b9b38515df788"
+            source_hash: "f407fe60c178ba0d5d258ee5e9403200"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/project.py"
+          start_line: 66
+          end_line: 73
+        snippets:
+        - score: 40.0
+          location:
+            path: "main/Project.kt"
+            start_line: 95
+            end_line: 102
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "cfaaa208ff90c7a8479b9b38515df788"
+            file_url: "https://api.osskb.org/file_contents/cfaaa208ff90c7a8479b9b38515df788"
+            source_hash: "f407fe60c178ba0d5d258ee5e9403200"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/repository.py"
+          start_line: 15
+          end_line: 41
+        snippets:
+        - score: 63.0
+          location:
+            path: "model/src/main/kotlin/Repository.kt"
+            start_line: 30
+            end_line: 56
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "40420fa7a341cd263ffc0ee4a7b471fa"
+            file_url: "https://api.osskb.org/file_contents/40420fa7a341cd263ffc0ee4a7b471fa"
+            source_hash: "499dabe5913351e42b979c38bb90d592"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/root_dependency_index.py"
+          start_line: 10
+          end_line: 25
+        snippets:
+        - score: 60.0
+          location:
+            path: "main/DependencyGraph.kt"
+            start_line: 259
+            end_line: 274
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://mvnrepository.com/artifact/org.ossreviewtoolkit/model"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:maven/org.ossreviewtoolkit/model"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "8c98907b15d954e2d352a7913c167799"
+            file_url: "https://api.osskb.org/file_contents/8c98907b15d954e2d352a7913c167799"
+            source_hash: "f70f4ac917ada56d223e53312e185e28"
+            related_purls: "pkg:github/oss-review-toolkit/ort"
+      - source_location:
+          path: "src/ort/models/scope.py"
+          start_line: 20
+          end_line: 32
+        snippets:
+        - score: 33.0
+          location:
+            path: "model/src/main/kotlin/Scope.kt"
+            start_line: 31
+            end_line: 43
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "84b7d302ccf1409cef20efc041ae4059"
+            file_url: "https://api.osskb.org/file_contents/84b7d302ccf1409cef20efc041ae4059"
+            source_hash: "acb3d24c640adf52086661a8e7be49bd"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/vcsinfo.py"
+          start_line: 14
+          end_line: 36
+        snippets:
+        - score: 61.0
+          location:
+            path: "model/src/main/kotlin/VcsInfo.kt"
+            start_line: 29
+            end_line: 51
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "2a2b721be46df363cf984150bf5c8490"
+            file_url: "https://api.osskb.org/file_contents/2a2b721be46df363cf984150bf5c8490"
+            source_hash: "d5b2718f926cedd34933718b690a06af"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/vcsinfo_curation_data.py"
+          start_line: 14
+          end_line: 36
+        snippets:
+        - score: 61.0
+          location:
+            path: "model/src/main/kotlin/VcsInfo.kt"
+            start_line: 29
+            end_line: 51
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "2a2b721be46df363cf984150bf5c8490"
+            file_url: "https://api.osskb.org/file_contents/2a2b721be46df363cf984150bf5c8490"
+            source_hash: "24d2d3c36318e9b69073ea3fc3f805f9"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/models/vcstype.py"
+          start_line: 17
+          end_line: 23
+        snippets:
+        - score: 12.0
+          location:
+            path: "model/src/main/kotlin/VcsType.kt"
+            start_line: 26
+            end_line: 32
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0"
+          additional_data:
+            file_hash: "2e470524aa05f79e718f331f7b453e9f"
+            file_url: "https://api.osskb.org/file_contents/2e470524aa05f79e718f331f7b453e9f"
+            source_hash: "4c5acbdc02c2cca189b8f08733fb3bc7"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+      - source_location:
+          path: "src/ort/types/purl_type.py"
+          start_line: 6
+          end_line: 23
+        snippets:
+        - score: 60.0
+          location:
+            path: "vo/models/xml/generics.py"
+            start_line: 8
+            end_line: 25
+          provenance:
+            vcs_info:
+              type: ""
+              url: "https://pypi.org/project/vo-models"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:pypi/vo-models"
+          license: "MIT"
+          additional_data:
+            file_hash: "49dfa8931b7708d7f371941e68d425fc"
+            file_url: "https://api.osskb.org/file_contents/49dfa8931b7708d7f371941e68d425fc"
+            source_hash: "b11352ed06bcc34831104c1acfaad8e6"
+            related_purls: "pkg:github/spacetelescope/vo-models"
+      - source_location:
+          path: "src/ort/utils/spdx/spdx_expression.py"
+          start_line: 13
+          end_line: 23
+        snippets:
+        - score: 35.0
+          location:
+            path: "utils/spdx/src/main/kotlin/SpdxExpression.kt"
+            start_line: 41
+            end_line: 51
+          provenance:
+            vcs_info:
+              type: "Git"
+              url: "https://github.com/oss-review-toolkit/ort.git"
+              revision: ""
+              path: ""
+            resolved_revision: "."
+          purl: "pkg:github/oss-review-toolkit/ort"
+          license: "Apache-2.0 AND Classpath-exception-2.0 AND LicenseRef-scancode-unknown-license-reference"
+          additional_data:
+            file_hash: "30069e5b95d1b874cb7389cc086f7027"
+            file_url: "https://api.osskb.org/file_contents/30069e5b95d1b874cb7389cc086f7027"
+            source_hash: "a60f43a9d2b39352d391dab0f2e7d6aa"
+            related_purls: "pkg:maven/org.ossreviewtoolkit/scanner"
+  scanners:
+    PIP::requirements.txt:15544ad032100f4f6bda18c9db6be0f489c50070:
+    - "SCANOSS"
+  files:
+  - provenance:
+      vcs_info:
+        type: "Git"
+        url: "https://github.com/heliocastro/python-ort.git"
+        revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+        path: ""
+      resolved_revision: "15544ad032100f4f6bda18c9db6be0f489c50070"
+    files:
+    - path: ".github/dependabot.yml"
+      sha1: "05390588a40f5e1f8b2c9807377968d00476c433"
+    - path: ".github/workflows/build.yml"
+      sha1: "2a54c71e9d679ef252d496d3fb936e8ebe94ce42"
+    - path: ".github/workflows/commit_checks.yaml"
+      sha1: "35574db17a33d8557847c7676001d494c67b9656"
+    - path: ".github/workflows/publish.yml"
+      sha1: "fa90ebe73ab9ce91da1e84c0c15c77daaee8911d"
+    - path: ".github/workflows/testing.yml"
+      sha1: "7878c37830871e267a6edad9d7a0b5fa7d562147"
+    - path: ".gitignore"
+      sha1: "b7796693dfd9ff6ea255e65e09468fb02566f781"
+    - path: ".ort.yml"
+      sha1: "2a584908c35b5d3cf16ffc7f0de36d8f6fb46a9f"
+    - path: ".pre-commit-config.yaml"
+      sha1: "324d2a0ea863257927e0938f9b3839e0190b24c7"
+    - path: "LICENSE"
+      sha1: "48634f2855bdffa2d5ba1febf4c42209308e90c5"
+    - path: "README.md"
+      sha1: "b8a5d57861df7d4eb499eff7b063e21109aa20d6"
+    - path: "examples/model_relation_test.py"
+      sha1: "7b7bb074c43dece119ba0162868667f49f298b9b"
+    - path: "examples/ort_result.py"
+      sha1: "de93ee0ffa5157dce68a37d27fba042c2fa2cb05"
+    - path: "examples/repo_config.py"
+      sha1: "0d1590cffcee90313de67bd08d708e9ef8b31adb"
+    - path: "licenses/ort/LICENSE"
+      sha1: "c00ef43045659b53da5d71d49b8cd7e528c9d55b"
+    - path: "py.typed"
+      sha1: "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    - path: "pyproject.toml"
+      sha1: "4f12efe3623c0e3d88ccc258e0f2b57aed712280"
+    - path: "schemas/analyzer-configuration-schema.json"
+      sha1: "0b7f8a2af3b840e65b715fa89447af35fbf3e323"
+    - path: "schemas/package-manager-configuration-schema.json"
+      sha1: "17cbcf79dd75162df1bdc7d3998a9a13005c3c93"
+    - path: "schemas/package-managers-schema.json"
+      sha1: "566f7b6b9007f6afaefdb5592a2a30a5ee615275"
+    - path: "schemas/repository-configuration-schema.json"
+      sha1: "7e3b9182bca3857ea915f92e7eab5d74beb2eb36"
+    - path: "scripts/header"
+      sha1: "94b14a2fca31a46e55fa869240b3d6d4ec019e57"
+    - path: "scripts/model_generate"
+      sha1: "68377beea526f439f195f184a65c1ae8e33b5781"
+    - path: "src/ort/__init__.py"
+      sha1: "7d368f43b41760884586433aefbd5c90ba47b3b0"
+    - path: "src/ort/models/__init__.py"
+      sha1: "dedc5d977d7027676364ad2e58b1c48d88567aec"
+    - path: "src/ort/models/advisor_capability.py"
+      sha1: "dcce1989a6e2ed390cefbcefb266f86bf6d3217e"
+    - path: "src/ort/models/advisor_details.py"
+      sha1: "b787803e6cda422ef95529e75798297f1c6f9da3"
+    - path: "src/ort/models/advisor_result.py"
+      sha1: "0a8716e402cfab9e77ac5ad64b0db42cf89ec23a"
+    - path: "src/ort/models/advisor_run.py"
+      sha1: "ec19ec37702f705f8d3d6a855594b445cfd7136e"
+    - path: "src/ort/models/advisor_summary.py"
+      sha1: "17cca5de3c0d81e1e9883435140fa638a854ed27"
+    - path: "src/ort/models/analyzer_result.py"
+      sha1: "e4a2d62a1459f577153216e91fac211571c582cd"
+    - path: "src/ort/models/analyzer_run.py"
+      sha1: "788d735c332a45130b4a0086545ca86d3138b67e"
+    - path: "src/ort/models/config/advisor_configuration.py"
+      sha1: "ce837a89fe46da9eb417e897113ad5d9529996d0"
+    - path: "src/ort/models/config/analyzer_configuration.py"
+      sha1: "750f08d431964e00901190ff037562b5dd4f4acf"
+    - path: "src/ort/models/config/curations.py"
+      sha1: "11983ad2beba134362ecfd9477e1b3133261ea8c"
+    - path: "src/ort/models/config/excludes.py"
+      sha1: "64a5664fad72b142f788fe9ebd197b11baac7b45"
+    - path: "src/ort/models/config/includes.py"
+      sha1: "098f8feeb50173dffdc53cf147cc74f6bff7cf5c"
+    - path: "src/ort/models/config/issue_resolution.py"
+      sha1: "c59c511092b1f3fcf6d8cd5acbf9d14d31262310"
+    - path: "src/ort/models/config/issue_resolution_reason.py"
+      sha1: "d760bd54de27f6a56c781a9c6ccc930542ae6653"
+    - path: "src/ort/models/config/license_choice.py"
+      sha1: "f1c811ac1de4522e88cc3fb3a16572d50c94d711"
+    - path: "src/ort/models/config/license_finding_curation.py"
+      sha1: "512bdb76591f39a5efb82bf431c53ecd433779ec"
+    - path: "src/ort/models/config/license_finding_curation_reason.py"
+      sha1: "6666a63b90eddfc9d81a22105fed9bd598a31afa"
+    - path: "src/ort/models/config/package_configuration.py"
+      sha1: "32d81d5b621e3b61b877c24d17953a97967c6529"
+    - path: "src/ort/models/config/package_manager_configuration.py"
+      sha1: "360a4abca1b9fc212cccf5de88153e671f96ab5a"
+    - path: "src/ort/models/config/path_exclude.py"
+      sha1: "2d07738addd1534b503d7368978333d4f585c179"
+    - path: "src/ort/models/config/path_exclude_reason.py"
+      sha1: "88d1f8c27bd3d2501491017a3c20e0762a956e15"
+    - path: "src/ort/models/config/path_include.py"
+      sha1: "68f41d61ffd3a66528ac63ee5b2baa997f16c8a0"
+    - path: "src/ort/models/config/path_include_reason.py"
+      sha1: "d2593856d884895666bd28f13c789e0bb2b32647"
+    - path: "src/ort/models/config/repository_analyzer_configuration.py"
+      sha1: "209149ea3e6c66b092409196d179d2552b3b9ebc"
+    - path: "src/ort/models/config/repository_configuration.py"
+      sha1: "c009df0b0800749400a67f3cd9b11522f22d04b7"
+    - path: "src/ort/models/config/resolutions.py"
+      sha1: "2cb9ee02fd267f62555494daf09364d4d4b4bb4d"
+    - path: "src/ort/models/config/rule_violation_reason.py"
+      sha1: "968d63323ef82da2acbdff93fe837fb8ff1e67d8"
+    - path: "src/ort/models/config/rule_violation_resolution.py"
+      sha1: "2418f78098382d40bd99f1efa3487378c55e4480"
+    - path: "src/ort/models/config/scope_exclude.py"
+      sha1: "b2ed80e812e878ca2466b96aedcbe071817fab18"
+    - path: "src/ort/models/config/scope_exclude_reason.py"
+      sha1: "eb76dd2004ef3a854db6e93db9b5c6d4765cf68d"
+    - path: "src/ort/models/config/snippet/Provenance.py"
+      sha1: "9d4a7a12f7270fb46b7519a15959b8422f218c48"
+    - path: "src/ort/models/config/snippet/snippet_choice.py"
+      sha1: "1cb17d62cb97fe13e6107023fd7d5caa5c29ba9c"
+    - path: "src/ort/models/config/snippet/snippet_choice_reason.py"
+      sha1: "742d81e27ecb6548360eda410314716da5102895"
+    - path: "src/ort/models/config/vcsmatcher.py"
+      sha1: "6444d689235ebab9a6bf962f9ef7939383444368"
+    - path: "src/ort/models/config/vulnerability_resolution.py"
+      sha1: "ca658cc201e3334165a38596454f40e9b93f166a"
+    - path: "src/ort/models/config/vulnerability_resolution_reason.py"
+      sha1: "8a40ad978c49e29cd611b2d394a8186e280467d5"
+    - path: "src/ort/models/defect.py"
+      sha1: "47312ee69d0d0da76b15d54431a0f1e9f9a103d0"
+    - path: "src/ort/models/dependency_graph.py"
+      sha1: "00b4cbf8b773229f15ebf4a5c1f3d620f58c3029"
+    - path: "src/ort/models/dependency_graph_edge.py"
+      sha1: "a46ddde2c540ae448e4287397b789d7d03172de9"
+    - path: "src/ort/models/dependency_graph_node.py"
+      sha1: "ffd7c521bc40af46cb3fcbf5f95f6f43e4a5f4ec"
+    - path: "src/ort/models/dependency_reference.py"
+      sha1: "24013df2aab819e21ec7eb71484886d5a46272d3"
+    - path: "src/ort/models/hash.py"
+      sha1: "534a0a473155263e79e71f92da80a073a5309e1e"
+    - path: "src/ort/models/hash_algorithm.py"
+      sha1: "9b46c6c149efec54f5d8e04944b27da54ec22b14"
+    - path: "src/ort/models/identifier.py"
+      sha1: "658f474c817b9fa255fc31fec0317503e898ba53"
+    - path: "src/ort/models/issue.py"
+      sha1: "a7591a08ce0ee763a8265e7f819712c217b01ea1"
+    - path: "src/ort/models/ort_result.py"
+      sha1: "a931096f6864acfa30658762732d033652bbd39a"
+    - path: "src/ort/models/package.py"
+      sha1: "3f0c139c07c763b7a532950d6ba2e5fd7cb4e3c7"
+    - path: "src/ort/models/package_curation.py"
+      sha1: "382029c5aaa9f979acc39b703c77d98f48f5939b"
+    - path: "src/ort/models/package_curation_data.py"
+      sha1: "756bdf06bb68e2c18a0a2225f14c02cb4e0a0c90"
+    - path: "src/ort/models/package_linkage.py"
+      sha1: "8377fccb601904d7389606620746c8f081d28d33"
+    - path: "src/ort/models/package_reference.py"
+      sha1: "e9363fac0b33b6bec07dd065e5a368e669d44efb"
+    - path: "src/ort/models/project.py"
+      sha1: "52f1a4917e4ac861d1293db4e5f8ee5b39f58482"
+    - path: "src/ort/models/remote_artifact.py"
+      sha1: "40cc6e752bc663153aeb1ef1f4dd76f37e40c6d4"
+    - path: "src/ort/models/repository.py"
+      sha1: "ea344d785d682270d5593046e0d06aa11d7075b4"
+    - path: "src/ort/models/resolutions.py"
+      sha1: "8981002ac6938797847860c175bc75253a4e4700"
+    - path: "src/ort/models/root_dependency_index.py"
+      sha1: "0bff1e0146eb463ace2c5d1a731563954713b9be"
+    - path: "src/ort/models/scope.py"
+      sha1: "d5b60393ccf90ea7693d3e65261a02c0ea04b5df"
+    - path: "src/ort/models/source_code_origin.py"
+      sha1: "56b8c3ad911689c15e5edf6099230ec51b3ad15c"
+    - path: "src/ort/models/text_location.py"
+      sha1: "92ba674cb17c8124c0d9e89a63f1218ea99a61b5"
+    - path: "src/ort/models/vcsinfo.py"
+      sha1: "74b0e4ed6a93979898333d1c78a77d2e4f2af782"
+    - path: "src/ort/models/vcsinfo_curation_data.py"
+      sha1: "e588ea8c86af759dc16f448ecb3827b57103273c"
+    - path: "src/ort/models/vcstype.py"
+      sha1: "91a1412a232994071d404430ffcf78e848c2ba33"
+    - path: "src/ort/models/vulnerabilities/__init__.py"
+      sha1: "a5c46f51dafe1f61982fdbf5082e62a282582f25"
+    - path: "src/ort/models/vulnerabilities/cvss2_rating.py"
+      sha1: "bcc12cd990c0d1d6e53cc5525a7c7e23c440af05"
+    - path: "src/ort/models/vulnerabilities/cvss3_rating.py"
+      sha1: "8bbcc5112917c9861d69c0cb8bffdf78570b334f"
+    - path: "src/ort/models/vulnerabilities/cvss4_rating.py"
+      sha1: "3c0da57e400533040b95a1f81da299ab37cc697f"
+    - path: "src/ort/models/vulnerabilities/vulnerability.py"
+      sha1: "2f682e1a4771eafa592b4962c9d1cd93f87660cc"
+    - path: "src/ort/models/vulnerabilities/vulnerability_reference.py"
+      sha1: "65b2f8c6092f64c7e06f5ed2ef3de1e84e1fb14b"
+    - path: "src/ort/severity.py"
+      sha1: "c1419c192986f868bca4bec34d7a8bd9453c9003"
+    - path: "src/ort/types/__init__.py"
+      sha1: "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    - path: "src/ort/types/purl_type.py"
+      sha1: "f43aa399006497502165b091806239d88f1eae28"
+    - path: "src/ort/utils/__init__.py"
+      sha1: "22da2eeeefaa2536b6255e45bdc689442ec5be16"
+    - path: "src/ort/utils/convert_enum.py"
+      sha1: "2ddab30ef827f88022447fb4e2c28045de532a9f"
+    - path: "src/ort/utils/environment.py"
+      sha1: "dba2a26dd997afacd3501a26290166e0de17df83"
+    - path: "src/ort/utils/processed_declared_license.py"
+      sha1: "f776db751101d4fd67bb2d79dbd8d5aa8b5604fc"
+    - path: "src/ort/utils/spdx/__init__.py"
+      sha1: "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    - path: "src/ort/utils/spdx/spdx_expression.py"
+      sha1: "1bb58cdd7808ceeaba2697dbada5e37986fc43a3"
+    - path: "src/ort/utils/spdx/spdx_license_choice.py"
+      sha1: "fa0cb20901a5c210be5e6b3248fc2d879f4f85f8"
+    - path: "tests/__init__.py"
+      sha1: "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    - path: "tests/data/advisor/advisor_result.yml"
+      sha1: "a8ec6cd0b4ef5180f3f41441c8e91ba58d3cadb2"
+    - path: "tests/data/advisor/advisor_result_defects.yml"
+      sha1: "7dd3c512123b52fa0838be962215743b3526be84"
+    - path: "tests/data/analyzer-result.yml"
+      sha1: "4591704e7ba8187bbc8c3d54f1b0c10d6ff74e54"
+    - path: "tests/data/example_curations.yml"
+      sha1: "94e7c21e1cfd1c3b34d2a512fb46f70a76015a05"
+    - path: "tests/data/example_simple_curation.yml"
+      sha1: "29f9c05b9d72d2e70764a30c3b47790e00137820"
+    - path: "tests/data/ort_config_reference.yml"
+      sha1: "8dca4defcab047cf39a78f4f345d2d758f70aec3"
+    - path: "tests/data/ort_configuration_reference.yml"
+      sha1: "6747e40bcd7085921459bc2848b0d3af60e93c2d"
+    - path: "tests/data/repo_config/example_simple_package_config.yml"
+      sha1: "61fe4651661e89ba9a7dc9fae7683cc5a9aaada7"
+    - path: "tests/data/repo_config/only_include.yml"
+      sha1: "3b1cd6b788dc1e5ef1beecd7cf34599509b63cf6"
+    - path: "tests/data/repo_config/only_include_reason_fail.yml"
+      sha1: "e209966a058a4bc61d6a882821c75b26278c2258"
+    - path: "tests/data/repo_config/str_boolean.ort.yml"
+      sha1: "62299b8f293b18f7a5d98caf0407a633bc03446f"
+    - path: "tests/test_advisor_capability.py"
+      sha1: "a5c1f1b120b5ec4d547eea43c1136d04ce524374"
+    - path: "tests/test_advisor_details.py"
+      sha1: "d73a0b98a67b4ac45c118ff895040623d984abe0"
+    - path: "tests/test_advisor_result.py"
+      sha1: "ce3b151ffea641a582a2ea4c3d6da65cdc38d747"
+    - path: "tests/test_cvss_ratings.py"
+      sha1: "a23d336d7697a14f9332d7228f10ec7cad02559d"
+    - path: "tests/test_package_configuration.py"
+      sha1: "9811bd7d4acf62250885b50df23752b882ee01fc"
+    - path: "tests/test_package_curation.py"
+      sha1: "3f2518c5938f7089fe2cd8c940a7d8f23dd05038"
+    - path: "tests/test_repo_config_files.py"
+      sha1: "238abd752d7e0f256f986a6e67fce52e9ad88400"
+    - path: "tests/test_repository_analyzer_config.py"
+      sha1: "ab867142ffe71ad29f33ec5fee6136a6f5db8ab0"
+    - path: "tests/test_repository_configuration.py"
+      sha1: "62f451ce3f5fe8a7258408f80ecd9aade73aa9d9"
+    - path: "tests/test_vulnerability_reference.py"
+      sha1: "2d40fca5026770c3d563c1e2be8c7aef32d30637"
+    - path: "tests/utils/__init__.py"
+      sha1: "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    - path: "tests/utils/load_yaml_config.py"
+      sha1: "880be5e98ffbd3816527577035a12180ba711dc9"
+    - path: "uv.lock"
+      sha1: "24fa33c969bb48c967f3e1c22a836bc6251b08ee"
+advisor: null
+evaluator: null
+resolved_configuration:
+  package_curations:
+  - provider:
+      id: "RepositoryConfiguration"
+    curations: []
+  - provider:
+      id: "DefaultDir"
+    curations:
+    - id: "PyPI::packaging:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/pypa/packaging/blob/20.9/LICENSE,\n\
+          https://github.com/pypa/packaging/blob/20.9/LICENSE.BSD,\nhttps://github.com/pypa/packaging/blob/20.9/LICENSE.APACHE\
+          \ and\nhttps://github.com/pypa/packaging/blob/20.9/setup.py#L56-L57.\n"
+        declared_license_mapping:
+          Apache Software License: "Apache-2.0 OR BSD-2-Clause"
+          BSD License: "Apache-2.0 OR BSD-2-Clause"
+    - id: "PyPI::markupsafe:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/pallets/markupsafe/blob/1.1.0/LICENSE.rst,\n\
+          https://github.com/pallets/markupsafe/blob/1.1.0/setup.py#L62 and\nhttps://github.com/pallets/markupsafe/blob/1.1.0/setup.py#L73.\n"
+        declared_license_mapping:
+          BSD: "BSD-3-Clause"
+          BSD License: "BSD-3-Clause"
+    - id: "PyPI::certifi:2026.2.25"
+      curations:
+        comment: "Set the source artifact to be scanned as the package metadata including\
+          \ its repository url / source artifact\ncannot be retrieved from the CARIAD/VW\
+          \ Artifactory PyPI mirror.\n"
+        source_artifact:
+          url: "https://files.pythonhosted.org/packages/af/2d/7bf41579a8986e348fa033a31cdd0e4121114f6bce2457e8876010b092dd/certifi-2026.2.25.tar.gz"
+          hash:
+            value: "1583dc0160782da8326204a90d7f5861"
+            algorithm: "MD5"
+    - id: "PyPI::pygments:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/pygments/pygments/blob/2.16.1/LICENSE,\n\
+          https://github.com/pygments/pygments/blob/2.16.1/pyproject.toml#L10 and\n\
+          https://github.com/pygments/pygments/blob/2.16.1/pyproject.toml#L28.\n"
+        declared_license_mapping:
+          BSD License: "BSD-2-Clause"
+    - id: "PyPI::pluggy:1.6.0"
+      curations:
+        comment: "Set the source artifact to be scanned as the package metadata including\
+          \ its repository url / source artifact\ncannot be retrieved from the CARIAD/VW\
+          \ Artifactory PyPI mirror.\n"
+        source_artifact:
+          url: "https://files.pythonhosted.org/packages/f9/e2/3e91f31a7d2b083fe6ef3fa267035b518369d9511ffab804f839851d2779/pluggy-1.6.0.tar.gz"
+          hash:
+            value: "54391218af778acb006c2d915085d469"
+            algorithm: "MD5"
+    - id: "PyPI::click:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/pallets/click/blob/6.4/LICENSE\
+          \ and\nhttps://github.com/pallets/click/blob/6.4/setup.py#L24.\n"
+        declared_license_mapping:
+          BSD License: "BSD-3-Clause"
+    - id: "PyPI::httpx:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/encode/httpx/blob/0.28.0/LICENSE.md\
+          \ and\nhttps://github.com/encode/httpx/blob/0.28.0/pyproject.toml#L8.\n"
+        declared_license_mapping:
+          BSD License: "BSD-3-Clause"
+    - id: "PyPI::idna:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/kjd/idna/blob/v3.2/LICENSE.md,\n\
+          https://github.com/kjd/idna/blob/v3.2/setup.py#L32 and\nhttps://github.com/kjd/idna/blob/v3.2/setup.py#L38.\n"
+        declared_license_mapping:
+          BSD License: "BSD-3-Clause"
+    - id: "PyPI::httpcore:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/encode/httpcore/blob/1.0.9/LICENSE.md,\n\
+          https://github.com/encode/httpcore/blob/1.0.9/pyproject.toml#L9 and\nhttps://github.com/encode/httpcore/blob/1.0.9/pyproject.toml#L20.\n"
+        declared_license_mapping:
+          BSD License: "BSD-3-Clause"
+    - id: "PyPI::jinja2:"
+      curations:
+        comment: "Mapping declared license based on\nhttps://github.com/pallets/jinja/blob/2.9.5/LICENSE,\n\
+          https://github.com/pallets/jinja/blob/2.9.5/setup.py#L45 and\nhttps://github.com/pallets/jinja/blob/2.9.5/setup.py#L57.\n"
+        declared_license_mapping:
+          BSD: "BSD-3-Clause"
+          BSD License: "BSD-3-Clause"
+    - id: "PyPI::types-pyyaml:6.0.12.20250915"
+      curations:
+        comment: "Set the source artifact to be scanned as the package metadata including\
+          \ its repository url / source artifact\ncannot be retrieved from the CARIAD/VW\
+          \ Artifactory PyPI mirror.\n"
+        source_artifact:
+          url: "https://files.pythonhosted.org/packages/7e/69/3c51b36d04da19b92f9e815be12753125bd8bc247ba0470a982e6979e71c/types_pyyaml-6.0.12.20250915.tar.gz"
+          hash:
+            value: "f248b64422846c25626c6287d5d13355"
+            algorithm: "MD5"
+  - provider:
+      id: "DefaultFile"
+    curations: []

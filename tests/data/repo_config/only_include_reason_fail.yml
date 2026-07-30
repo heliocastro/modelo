@@ -1,0 +1,5 @@
+includes:
+  paths:
+    - pattern: 'test/**'
+      reason: 'BINARY_OF'
+      comment: 'Included for test'
