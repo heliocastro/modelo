@@ -5,13 +5,8 @@ SPDX-License-Identifier: MIT
 
 # vale
 
-**V**alidation **E**xtended — a Rust port of [python-ort](https://github.com/heliocastro/python-ort):
-the [OSS Review Toolkit](https://github.com/oss-review-toolkit/ort) data model, its validation
-rules, a CLI/TUI validator, and Python bindings that drop in where `python-ort` is used today.
-
-Roughly 100 model structs across `src/models/` (plus `config/`, `licenses/`, `vulnerabilities/`
-subsets), each with `serde` (de)serialization and a `Model::validate` implementation matching the
-corresponding pydantic model's validators.
+VALE is an acronym for **Val**idator **E**xtended, a Rust multi-model validation library
+and a Python bindings extension intended as a drop-in replacement for python-ort.
 
 ## Build
 
