@@ -119,9 +119,24 @@
     `CARGO_REGISTRY_TOKEN`. `cargo package --locked` was verified locally; nothing was published.
 - [x] Update the README with the information on deployment and how to deploy on both cases
 
+### Phase 10: Multi-model namespaces
+- [x] Move the ORT model into its own namespace so further model families can be added beside it:
+    `src/models/*.rs` -> `src/models/ort/*.rs`, i.e. `vale::models::ort::<module>`. The validation
+    engine (`Model`, `ValidationError`) stays family-agnostic at `vale::models`, which is why the
+    ~90 model files' `use crate::models::{Model, ValidationError}` lines are unchanged.
+- [x] Python bindings: the three ORT classes moved from the top-level `vale` module into a `vale.ort`
+    submodule (registered in `sys.modules` so `import vale.ort` and `from vale.ort import X` both
+    work, with `__name__` and `#[pyclass(module = "vale.ort")]` set so tracebacks and pickling
+    report the dotted name). No top-level aliases were kept -- nothing is released yet.
+- [x] Examples updated to `from vale.ort import ...`; the parity check still reports 0 mismatches.
+- [ ] CLI subcommands are still flat (`vale ort-result`) rather than grouped per family
+    (`vale ort ort-result`); deferred until a second family exists to group against.
+
 ## Development Rules
 
 - **Commit Style**: Conventional Commits (`feat:`, `fix:`, `docs:`, etc.) with `-s` (Signed-off-by).
+- **Branch Names**: `feat/<name>` for features, `fix/<name>` for fixes; `<name>` in
+  `lower_snake_case`, no ticket-number-only names (e.g. `feat/ort_namespace`).
 - **Documentation**: All public items must have doc comments.
 - **Headers**: All source files must include `Reuse` headers and MIT license notice.
 - **Laziness/Efficiency**: Use standard library where possible. Use `ponytail` principles if ambiguity arises.

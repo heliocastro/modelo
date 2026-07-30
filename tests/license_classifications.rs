@@ -14,9 +14,9 @@ mod common;
 
 use std::collections::HashSet;
 
-use vale::models::license_categorization::LicenseCategorization;
-use vale::models::license_category::LicenseCategory;
-use vale::models::license_classifications::LicenseClassifications;
+use vale::models::ort::license_categorization::LicenseCategorization;
+use vale::models::ort::license_category::LicenseCategory;
+use vale::models::ort::license_classifications::LicenseClassifications;
 use vale::models::Model;
 
 #[test]

@@ -12,7 +12,7 @@
 
 mod common;
 
-use vale::models::repository_analyzer_configuration::RepositoryAnalyzerConfiguration;
+use vale::models::ort::repository_analyzer_configuration::RepositoryAnalyzerConfiguration;
 
 #[test]
 fn boolean_option_conversion() {

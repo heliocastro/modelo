@@ -20,9 +20,9 @@ use ratatui::widgets::{Block, Borders, List, ListItem, Paragraph, Wrap};
 use ratatui::{Frame, Terminal};
 use serde::de::DeserializeOwned;
 
-use crate::models::license_classifications::LicenseClassifications;
-use crate::models::ort_result::OrtResult;
-use crate::models::repository_configuration::RepositoryConfiguration;
+use crate::models::ort::license_classifications::LicenseClassifications;
+use crate::models::ort::ort_result::OrtResult;
+use crate::models::ort::repository_configuration::RepositoryConfiguration;
 use crate::models::Model;
 
 const KINDS: [&str; 3] = [

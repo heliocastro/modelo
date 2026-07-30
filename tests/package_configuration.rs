@@ -5,7 +5,7 @@
 
 mod common;
 
-use vale::models::package_configuration::PackageConfiguration;
+use vale::models::ort::package_configuration::PackageConfiguration;
 
 #[test]
 fn ort_docs_simple_package_configuration() {

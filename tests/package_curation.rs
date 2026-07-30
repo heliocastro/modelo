@@ -9,7 +9,7 @@
 
 mod common;
 
-use vale::models::package_curation::PackageCuration;
+use vale::models::ort::package_curation::PackageCuration;
 
 #[test]
 fn ort_docs_simple_curation_example() {

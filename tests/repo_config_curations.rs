@@ -5,7 +5,7 @@
 
 mod common;
 
-use vale::models::repository_configuration::RepositoryConfiguration;
+use vale::models::ort::repository_configuration::RepositoryConfiguration;
 
 fn load_repo_config() -> RepositoryConfiguration {
     let value = common::load_yaml("repo_config/curations.yml");

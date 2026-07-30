@@ -13,16 +13,16 @@ mod common;
 
 use std::collections::{HashMap, HashSet};
 
-use vale::models::provenance::{Provenance, RepositoryProvenance};
-use vale::models::scan_result::ScanResult;
-use vale::models::scan_summary::ScanSummary;
-use vale::models::scanner_details::ScannerDetails;
-use vale::models::scanner_run::ScannerRun;
-use vale::models::snippet::Snippet;
-use vale::models::snippet_finding::SnippetFinding;
-use vale::models::text_location::TextLocation;
-use vale::models::vcs_info::VcsInfo;
-use vale::models::vcs_type::VcsType;
+use vale::models::ort::provenance::{Provenance, RepositoryProvenance};
+use vale::models::ort::scan_result::ScanResult;
+use vale::models::ort::scan_summary::ScanSummary;
+use vale::models::ort::scanner_details::ScannerDetails;
+use vale::models::ort::scanner_run::ScannerRun;
+use vale::models::ort::snippet::Snippet;
+use vale::models::ort::snippet_finding::SnippetFinding;
+use vale::models::ort::text_location::TextLocation;
+use vale::models::ort::vcs_info::VcsInfo;
+use vale::models::ort::vcs_type::VcsType;
 
 fn make_scanner_details() -> ScannerDetails {
     ScannerDetails {
