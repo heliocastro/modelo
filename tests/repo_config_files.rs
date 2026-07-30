@@ -10,7 +10,7 @@
 
 mod common;
 
-use vale::models::repository_configuration::RepositoryConfiguration;
+use vale::models::ort::repository_configuration::RepositoryConfiguration;
 
 fn load(name: &str) -> serde_yaml::Value {
     common::load_yaml(&format!("repo_config/{name}"))

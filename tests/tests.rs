@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 // SPDX-License-Identifier: MIT
 
-use vale::models::hash::Hash;
-use vale::models::identifier::Identifier;
+use vale::models::ort::hash::Hash;
+use vale::models::ort::identifier::Identifier;
 use vale::models::Model;
 
 #[test]

@@ -11,7 +11,7 @@ import argparse
 import json
 import sys
 
-from vale import LicenseClassifications
+from vale.ort import LicenseClassifications
 
 
 def main() -> None:

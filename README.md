@@ -8,6 +8,21 @@ SPDX-License-Identifier: MIT
 VALE is an acronym for **Val**idator **E**xtended, a Rust multi-model validation library
 and a Python bindings extension intended as a drop-in replacement for python-ort.
 
+## Namespaces
+
+Each model family lives in its own namespace, so families can be added without disturbing the
+others. Currently there is one: **ort**, the
+[OSS Review Toolkit](https://github.com/oss-review-toolkit/ort) model.
+
+| | ORT model | Shared validation engine |
+| --- | --- | --- |
+| Rust | `vale::models::ort::*` (`src/models/ort/`) | `vale::models::{Model, ValidationError}` |
+| Python | `vale.ort` | — |
+
+Adding a family means a new `src/models/<name>/` directory whose types implement
+`models::Model`, plus a `vale.<name>` submodule in `src/python.rs`. The engine, the CLI and the
+bindings' plumbing stay as they are.
+
 ## Build
 
 ```sh
@@ -31,6 +46,9 @@ vale license-classifications  tests/data/license-classifications.yml
 vale repository-configuration tests/data/repo_config/curations.yml
 vale ort-result               tests/data/evaluation-result.yml
 ```
+
+The subcommands are still flat rather than grouped per family (`vale ort ort-result ...`); that
+regrouping is worth doing when a second family lands, not before.
 
 Each subcommand prints `valid <kind> file.` and exits 0, or reports the first parse/validation
 error and exits non-zero. `--debug` additionally pretty-prints the parsed model. This is the
@@ -56,10 +74,11 @@ maturin develop --features python     # into the active virtualenv
 # or: pip install .                   # maturin is the build backend
 ```
 
-The module exposes the three top-level models, each with the same four entry points:
+The `vale.ort` submodule exposes the three top-level ORT models, each with the same four entry
+points:
 
 ```python
-from vale import LicenseClassifications, OrtResult, RepositoryConfiguration
+from vale.ort import LicenseClassifications, OrtResult, RepositoryConfiguration
 
 result = OrtResult.from_yaml_file("tests/data/evaluation-result.yml")
 config = RepositoryConfiguration.from_yaml_str(open(".ort.yml").read())

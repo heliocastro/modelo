@@ -11,7 +11,7 @@ import argparse
 import json
 import sys
 
-from vale import OrtResult
+from vale.ort import OrtResult
 
 
 def main() -> None:

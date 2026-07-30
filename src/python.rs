@@ -14,9 +14,9 @@ use pyo3::exceptions::{PyOSError, PyValueError};
 use pyo3::prelude::*;
 use serde::{de::DeserializeOwned, Serialize};
 
-use crate::models::license_classifications::LicenseClassifications as RustLicenseClassifications;
-use crate::models::ort_result::OrtResult as RustOrtResult;
-use crate::models::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
+use crate::models::ort::license_classifications::LicenseClassifications as RustLicenseClassifications;
+use crate::models::ort::ort_result::OrtResult as RustOrtResult;
+use crate::models::ort::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
 use crate::models::Model;
 
 /// Parses `s` as YAML into `T` and validates it, mapping any failure to a `PyValueError`
@@ -41,7 +41,7 @@ fn to_pretty_json<T: Serialize>(value: &T) -> PyResult<String> {
 
 macro_rules! pymodel {
     ($py_name:ident, $rust_ty:ty) => {
-        #[pyclass]
+        #[pyclass(module = "vale.ort")]
         #[derive(Clone)]
         pub struct $py_name(pub $rust_ty);
 
@@ -72,11 +72,23 @@ pymodel!(LicenseClassifications, RustLicenseClassifications);
 pymodel!(RepositoryConfiguration, RustRepositoryConfiguration);
 pymodel!(OrtResult, RustOrtResult);
 
-/// Python module `vale`, matching the `python-ort` import path (`from vale import OrtResult`).
+/// Python module `vale`. Each model family gets its own submodule, mirroring the Rust
+/// `models::<family>` layout, so `from vale.ort import OrtResult` is the ORT import path.
 #[pymodule]
-fn vale(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_class::<LicenseClassifications>()?;
-    m.add_class::<RepositoryConfiguration>()?;
-    m.add_class::<OrtResult>()?;
+fn vale(py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
+    let ort = PyModule::new_bound(py, "ort")?;
+    ort.add_class::<LicenseClassifications>()?;
+    ort.add_class::<RepositoryConfiguration>()?;
+    ort.add_class::<OrtResult>()?;
+    m.add_submodule(&ort)?;
+    // `add_submodule` keys the parent attribute off the name given above, so the dotted name has
+    // to be set afterwards for tracebacks and pickling to report `vale.ort`.
+    ort.setattr("__name__", "vale.ort")?;
+
+    // `add_submodule` only sets the attribute on the parent; without a `sys.modules` entry,
+    // `import vale.ort` and `from vale.ort import X` fail for a submodule defined in Rust.
+    py.import_bound("sys")?
+        .getattr("modules")?
+        .set_item("vale.ort", &ort)?;
     Ok(())
 }

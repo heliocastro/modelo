@@ -16,7 +16,8 @@ import json
 import sys
 from pathlib import Path
 
-import vale as rust
+from vale import ort as rust
+
 from ort import OrtResult, RepositoryConfiguration, ort_yaml_load
 from ort.models import LicenseClassifications
 

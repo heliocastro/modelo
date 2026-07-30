@@ -11,7 +11,7 @@ import argparse
 import json
 import sys
 
-from vale import RepositoryConfiguration
+from vale.ort import RepositoryConfiguration
 
 
 def main() -> None:

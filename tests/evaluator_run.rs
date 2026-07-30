@@ -13,12 +13,12 @@ mod common;
 use std::collections::HashMap;
 
 use std::str::FromStr;
-use vale::models::base_run::BaseRun;
-use vale::models::environment::Environment;
-use vale::models::evaluator_run::EvaluatorRun;
-use vale::models::identifier::Identifier;
-use vale::models::rule_violation::RuleViolation;
-use vale::models::severity::Severity;
+use vale::models::ort::base_run::BaseRun;
+use vale::models::ort::environment::Environment;
+use vale::models::ort::evaluator_run::EvaluatorRun;
+use vale::models::ort::identifier::Identifier;
+use vale::models::ort::rule_violation::RuleViolation;
+use vale::models::ort::severity::Severity;
 
 fn make_environment() -> Environment {
     Environment {
