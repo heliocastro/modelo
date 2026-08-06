@@ -14,10 +14,10 @@ mod common;
 
 use std::collections::HashSet;
 
+use modelo::models::Model;
 use modelo::models::ort::license_categorization::LicenseCategorization;
 use modelo::models::ort::license_category::LicenseCategory;
 use modelo::models::ort::license_classifications::LicenseClassifications;
-use modelo::models::Model;
 
 #[test]
 fn detect_duplicate_category_names() {

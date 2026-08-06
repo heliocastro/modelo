@@ -86,13 +86,13 @@ impl fmt::Display for Package {
 
 impl Model for Package {
     fn validate(&self) -> Result<(), ValidationError> {
-        if let Some(origins) = &self.source_code_origins {
-            if origins.is_empty() {
-                return Err(ValidationError::InvalidField {
-                    field: "source_code_origins".to_string(),
-                    message: "must not be empty when present".to_string(),
-                });
-            }
+        if let Some(origins) = &self.source_code_origins
+            && origins.is_empty()
+        {
+            return Err(ValidationError::InvalidField {
+                field: "source_code_origins".to_string(),
+                message: "must not be empty when present".to_string(),
+            });
         }
         Ok(())
     }

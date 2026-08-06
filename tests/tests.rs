@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 // SPDX-License-Identifier: MIT
 
+use modelo::models::Model;
 use modelo::models::ort::hash::Hash;
 use modelo::models::ort::identifier::Identifier;
-use modelo::models::Model;
 
 #[test]
 fn identifier_and_hash_round_trip_via_serde() {

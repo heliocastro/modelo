@@ -4,10 +4,10 @@ build-backend = "maturin"
 
 [project]
 name = "python-modelo"
-version = "0.4.0"
+version = "0.5.0"
 description = "Modelo - A modular model validator, with python-ort compatible bindings"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Helio Chissini de Castro", email = "dev@heliocastro.info" }]
