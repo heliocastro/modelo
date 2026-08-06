@@ -8,7 +8,6 @@ Equivalent of python-ort's `examples/licenses_classification.py`.
 """
 
 import argparse
-import json
 import sys
 
 from vale.ort import LicenseClassifications
@@ -25,10 +24,9 @@ def main() -> None:
         print(f"invalid license-classifications file: {e}", file=sys.stderr)
         sys.exit(1)
 
-    data = json.loads(parsed.to_json())
-    print(f"{len(data['categories'])} categories, {len(data['categorizations'])} categorizations")
-    for categorization in data["categorizations"][:5]:
-        print(f"  {categorization['id']}: {', '.join(sorted(categorization['categories']))}")
+    print(f"{len(parsed.categories)} categories, {len(parsed.categorizations)} categorizations")
+    for categorization in parsed.categorizations[:5]:
+        print(f"  {categorization.id}: {', '.join(sorted(categorization.categories))}")
 
 
 if __name__ == "__main__":

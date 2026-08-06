@@ -20,7 +20,7 @@ others. Currently there is one: **ort**, the
 | Python | `vale.ort` | — |
 
 Adding a family means a new `src/models/<name>/` directory whose types implement
-`models::Model`, plus a `vale.<name>` submodule in `src/python.rs`. The engine, the CLI and the
+`models::Model`, plus a `vale.<name>` submodule in `src/python/mod.rs`. The engine, the CLI and the
 bindings' plumbing stay as they are.
 
 ## Build
@@ -74,26 +74,48 @@ maturin develop --features python     # into the active virtualenv
 # or: pip install .                   # maturin is the build backend
 ```
 
-The `vale.ort` submodule exposes the three top-level ORT models, each with the same four entry
-points:
+The `vale.ort` submodule exposes the three top-level ORT models, each parsed from YAML and
+navigated with plain attribute access, the way python-ort's pydantic models are:
 
 ```python
+from pprint import pprint
+
 from vale.ort import LicenseClassifications, OrtResult, RepositoryConfiguration
 
 result = OrtResult.from_yaml_file("tests/data/evaluation-result.yml")
 config = RepositoryConfiguration.from_yaml_str(open(".ort.yml").read())
 
-import json
-analyzer = json.loads(result.to_json())["analyzer"]     # full parsed document as JSON
-print(repr(config))                                      # short summary line
+pprint(result.analyzer)                                 # AnalyzerRun(start_time=..., ...)
+result.analyzer.environment.ort_version
+result.analyzer.result.projects[0].id
+result.repository.vcs.url
 ```
 
 Invalid input raises `ValueError` (with the failing field path, as pydantic's `ValidationError`
 does); an unreadable path raises `OSError`.
 
-Nested models are reached through `json.loads(obj.to_json())` rather than attribute access —
-see the note at the top of `src/python.rs` for why, and how to expand a class when direct
-attribute access is needed.
+Every nested model is an instance of a class named after it (`type(result.analyzer).__name__ ==
+"AnalyzerRun"`), all of them subclasses of `vale.ort.Object`. Besides attribute access they
+support `keys()`, `values()`, `items()`, `obj["field"]`, `"field" in obj`, `len(obj)`, `==` and
+`to_dict()`:
+
+```python
+import json
+
+result.to_dict()                                        # nested plain dicts and lists
+json.loads(result.to_json()) == result.to_dict()        # True — one source of truth
+```
+
+Fields that ORT itself serializes as scalars stay scalars: `Identifier` is a string
+(`"PIP::requirements.txt:1.0"`), enums are their member names, and free-form maps such as
+`labels` are dicts.
+
+### Type checking
+
+The wheel is a PEP 561 typed package: `vale/py.typed` ships alongside `vale/ort.pyi`, so `mypy`,
+`pyright` and `ty` resolve `import vale.ort` and the model classes without falling back to `Any`.
+The compiled extension lives at `vale._vale`; `vale.ort` is a thin Python re-export of it, which is
+what makes the module statically resolvable.
 
 ### Examples
 
