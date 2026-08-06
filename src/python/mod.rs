@@ -27,12 +27,12 @@ use std::sync::OnceLock;
 use pyo3::exceptions::{PyOSError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{Serialize, de::DeserializeOwned};
 
+use crate::models::Model;
 use crate::models::ort::license_classifications::LicenseClassifications as RustLicenseClassifications;
 use crate::models::ort::ort_result::OrtResult as RustOrtResult;
 use crate::models::ort::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
-use crate::models::Model;
 use crate::python::object::ModeloObject;
 use crate::python::serializer::to_pyobject;
 
@@ -59,12 +59,11 @@ fn to_pretty_json<T: Serialize>(value: &T) -> PyResult<String> {
 macro_rules! pymodel {
     ($py_name:ident, $rust_ty:ty) => {
         #[pyclass(module = "modelo.ort")]
-        #[derive(Clone)]
         pub struct $py_name {
             pub inner: $rust_ty,
             // Built on first attribute access rather than at parse time, so callers that only
             // want `to_json` never pay for materialising the whole tree.
-            node: OnceLock<PyObject>,
+            node: OnceLock<Py<PyAny>>,
         }
 
         impl $py_name {
@@ -84,7 +83,7 @@ macro_rules! pymodel {
                         self.node.get_or_init(|| node)
                     }
                 };
-                Ok(node.bind(py).downcast::<ModeloObject>()?.clone())
+                Ok(node.bind(py).cast::<ModeloObject>()?.clone())
             }
         }
 
@@ -113,15 +112,15 @@ macro_rules! pymodel {
                 Ok(self.node(py)?.borrow().keys())
             }
 
-            fn items(&self, py: Python<'_>) -> PyResult<PyObject> {
-                Ok(self.node(py)?.borrow().items(py).into())
+            fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+                Ok(self.node(py)?.borrow().items(py)?.into())
             }
 
-            fn __getattr__(&self, py: Python<'_>, name: &str) -> PyResult<PyObject> {
+            fn __getattr__(&self, py: Python<'_>, name: &str) -> PyResult<Py<PyAny>> {
                 self.node(py)?.borrow().__getattr__(py, name)
             }
 
-            fn __getitem__(&self, py: Python<'_>, name: &str) -> PyResult<PyObject> {
+            fn __getitem__(&self, py: Python<'_>, name: &str) -> PyResult<Py<PyAny>> {
                 self.node(py)?.borrow().__getitem__(py, name)
             }
 
@@ -133,7 +132,7 @@ macro_rules! pymodel {
                 Ok(self.node(py)?.borrow().__len__())
             }
 
-            fn __iter__(&self, py: Python<'_>) -> PyResult<PyObject> {
+            fn __iter__(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
                 self.node(py)?.borrow().__iter__(py)
             }
 
@@ -169,7 +168,7 @@ pymodel!(OrtResult, RustOrtResult);
 /// `from modelo.ort import OrtResult` is the ORT import path.
 #[pymodule]
 fn _modelo(py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
-    let ort = PyModule::new_bound(py, "ort")?;
+    let ort = PyModule::new(py, "ort")?;
     ort.add_class::<ModeloObject>()?;
     ort.add_class::<LicenseClassifications>()?;
     ort.add_class::<RepositoryConfiguration>()?;
@@ -182,7 +181,7 @@ fn _modelo(py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
 
     // `add_submodule` only sets the attribute on the parent; without a `sys.modules` entry,
     // `from modelo._modelo.ort import X` fails for a submodule defined in Rust.
-    py.import_bound("sys")?
+    py.import("sys")?
         .getattr("modules")?
         .set_item("modelo._modelo.ort", &ort)?;
     Ok(())

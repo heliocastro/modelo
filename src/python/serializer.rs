@@ -11,9 +11,10 @@
 
 use std::fmt;
 
+use pyo3::conversion::IntoPyObjectExt;
 use pyo3::prelude::*;
 use pyo3::types::{PyBytes, PyDict, PyList};
-use serde::{ser, Serialize};
+use serde::{Serialize, ser};
 
 use crate::python::object::make_object;
 
@@ -50,7 +51,7 @@ impl ser::Error for Error {
 type Result<T> = std::result::Result<T, Error>;
 
 /// Converts any [`Serialize`] model into a tree of Python objects, lists and scalars.
-pub fn to_pyobject<T: Serialize>(py: Python<'_>, value: &T) -> PyResult<PyObject> {
+pub fn to_pyobject<T: Serialize>(py: Python<'_>, value: &T) -> PyResult<Py<PyAny>> {
     value
         .serialize(Serializer::for_type::<T>(py))
         .map_err(PyErr::from)
@@ -87,7 +88,7 @@ impl<'py> Serializer<'py> {
 }
 
 impl<'py> ser::Serializer for Serializer<'py> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     type SerializeSeq = SeqSerializer<'py>;
@@ -99,67 +100,67 @@ impl<'py> ser::Serializer for Serializer<'py> {
     type SerializeStructVariant = VariantStructSerializer<'py>;
 
     fn serialize_bool(self, v: bool) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_i8(self, v: i8) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_i16(self, v: i16) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_i32(self, v: i32) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_i64(self, v: i64) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_i128(self, v: i128) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_u8(self, v: u8) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_u16(self, v: u16) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_u32(self, v: u32) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_u64(self, v: u64) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_u128(self, v: u128) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_f32(self, v: f32) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_f64(self, v: f64) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_char(self, v: char) -> Result<Self::Ok> {
-        Ok(v.to_string().into_py(self.py))
+        Ok(v.to_string().into_py_any(self.py)?)
     }
 
     fn serialize_str(self, v: &str) -> Result<Self::Ok> {
-        Ok(v.into_py(self.py))
+        Ok(v.into_py_any(self.py)?)
     }
 
     fn serialize_bytes(self, v: &[u8]) -> Result<Self::Ok> {
-        Ok(PyBytes::new_bound(self.py, v).into())
+        Ok(PyBytes::new(self.py, v).into())
     }
 
     fn serialize_none(self) -> Result<Self::Ok> {
@@ -184,7 +185,7 @@ impl<'py> ser::Serializer for Serializer<'py> {
         _index: u32,
         variant: &'static str,
     ) -> Result<Self::Ok> {
-        Ok(variant.into_py(self.py))
+        Ok(variant.into_py_any(self.py)?)
     }
 
     fn serialize_newtype_struct<T: ?Sized + Serialize>(
@@ -202,7 +203,7 @@ impl<'py> ser::Serializer for Serializer<'py> {
         variant: &'static str,
         value: &T,
     ) -> Result<Self::Ok> {
-        let dict = PyDict::new_bound(self.py);
+        let dict = PyDict::new(self.py);
         dict.set_item(
             variant,
             value.serialize(Serializer::for_type::<T>(self.py))?,
@@ -251,7 +252,7 @@ impl<'py> ser::Serializer for Serializer<'py> {
             py: self.py,
             // A flattened struct reaches us as a map; the hint restores its class name.
             name: self.hint,
-            dict: PyDict::new_bound(self.py).unbind(),
+            dict: PyDict::new(self.py).unbind(),
             key: None,
         })
     }
@@ -260,7 +261,7 @@ impl<'py> ser::Serializer for Serializer<'py> {
         Ok(StructSerializer {
             py: self.py,
             name,
-            fields: PyDict::new_bound(self.py).unbind(),
+            fields: PyDict::new(self.py).unbind(),
         })
     }
 
@@ -276,7 +277,7 @@ impl<'py> ser::Serializer for Serializer<'py> {
             inner: StructSerializer {
                 py: self.py,
                 name: variant,
-                fields: PyDict::new_bound(self.py).unbind(),
+                fields: PyDict::new(self.py).unbind(),
             },
         })
     }
@@ -284,7 +285,7 @@ impl<'py> ser::Serializer for Serializer<'py> {
 
 pub struct SeqSerializer<'py> {
     py: Python<'py>,
-    items: Vec<PyObject>,
+    items: Vec<Py<PyAny>>,
 }
 
 impl<'py> SeqSerializer<'py> {
@@ -294,13 +295,13 @@ impl<'py> SeqSerializer<'py> {
         Ok(())
     }
 
-    fn finish(self) -> PyObject {
-        PyList::new_bound(self.py, self.items).into()
+    fn finish(self) -> Result<Py<PyAny>> {
+        Ok(PyList::new(self.py, self.items)?.into())
     }
 }
 
 impl ser::SerializeSeq for SeqSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_element<T: ?Sized + Serialize>(&mut self, value: &T) -> Result<()> {
@@ -308,12 +309,12 @@ impl ser::SerializeSeq for SeqSerializer<'_> {
     }
 
     fn end(self) -> Result<Self::Ok> {
-        Ok(self.finish())
+        self.finish()
     }
 }
 
 impl ser::SerializeTuple for SeqSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_element<T: ?Sized + Serialize>(&mut self, value: &T) -> Result<()> {
@@ -321,12 +322,12 @@ impl ser::SerializeTuple for SeqSerializer<'_> {
     }
 
     fn end(self) -> Result<Self::Ok> {
-        Ok(self.finish())
+        self.finish()
     }
 }
 
 impl ser::SerializeTupleStruct for SeqSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_field<T: ?Sized + Serialize>(&mut self, value: &T) -> Result<()> {
@@ -334,7 +335,7 @@ impl ser::SerializeTupleStruct for SeqSerializer<'_> {
     }
 
     fn end(self) -> Result<Self::Ok> {
-        Ok(self.finish())
+        self.finish()
     }
 }
 
@@ -344,7 +345,7 @@ pub struct VariantSeqSerializer<'py> {
 }
 
 impl ser::SerializeTupleVariant for VariantSeqSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_field<T: ?Sized + Serialize>(&mut self, value: &T) -> Result<()> {
@@ -353,8 +354,8 @@ impl ser::SerializeTupleVariant for VariantSeqSerializer<'_> {
 
     fn end(self) -> Result<Self::Ok> {
         let py = self.inner.py;
-        let dict = PyDict::new_bound(py);
-        dict.set_item(self.variant, self.inner.finish())
+        let dict = PyDict::new(py);
+        dict.set_item(self.variant, self.inner.finish()?)
             .map_err(Error::from)?;
         Ok(dict.into())
     }
@@ -364,11 +365,11 @@ pub struct MapSerializer<'py> {
     py: Python<'py>,
     name: Option<&'static str>,
     dict: Py<PyDict>,
-    key: Option<PyObject>,
+    key: Option<Py<PyAny>>,
 }
 
 impl ser::SerializeMap for MapSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_key<T: ?Sized + Serialize>(&mut self, key: &T) -> Result<()> {
@@ -411,13 +412,13 @@ impl StructSerializer<'_> {
             .map_err(Error::from)
     }
 
-    fn finish(self) -> Result<PyObject> {
+    fn finish(self) -> Result<Py<PyAny>> {
         make_object(self.py, self.name, self.fields.bind(self.py)).map_err(Error::from)
     }
 }
 
 impl ser::SerializeStruct for StructSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_field<T: ?Sized + Serialize>(
@@ -439,7 +440,7 @@ pub struct VariantStructSerializer<'py> {
 }
 
 impl ser::SerializeStructVariant for VariantStructSerializer<'_> {
-    type Ok = PyObject;
+    type Ok = Py<PyAny>;
     type Error = Error;
 
     fn serialize_field<T: ?Sized + Serialize>(
@@ -453,7 +454,7 @@ impl ser::SerializeStructVariant for VariantStructSerializer<'_> {
     fn end(self) -> Result<Self::Ok> {
         let py = self.inner.py;
         let variant = self.variant;
-        let dict = PyDict::new_bound(py);
+        let dict = PyDict::new(py);
         dict.set_item(variant, self.inner.finish()?)
             .map_err(Error::from)?;
         Ok(dict.into())

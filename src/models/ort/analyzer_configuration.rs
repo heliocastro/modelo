@@ -101,9 +101,11 @@ mod tests {
     #[test]
     fn defaults_include_known_package_managers() {
         let config = AnalyzerConfiguration::default();
-        assert!(config
-            .enabled_package_managers
-            .contains(&"Cargo".to_string()));
+        assert!(
+            config
+                .enabled_package_managers
+                .contains(&"Cargo".to_string())
+        );
         assert!(!config.allow_dynamic_versions);
     }
 }

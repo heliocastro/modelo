@@ -1,7 +1,7 @@
 [package]
 name = "modelo"
-version = "0.4.0"
-edition = "2021"
+version = "0.5.0"
+edition = "2024"
 description = "A modular model validator"
 license = "MIT"
 repository = "https://github.com/heliocastro/modelo"
@@ -27,8 +27,8 @@ anyhow = "1.0"
 clap = { version = "4.0", features = ["derive"] }
 ratatui = "0.26"
 crossterm = "0.27"
-pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
-purl = { version = "0.1", features = ["serde", "package-type"] }
+pyo3 = { version = "0.29.2", features = ["extension-module"], optional = true }
+purl = { version = "0.1.6", features = ["serde", "package-type"] }
 
 [features]
 python = ["dep:pyo3"]

@@ -12,7 +12,7 @@ use std::time::Duration;
 use crossterm::event::{self, Event, KeyCode, KeyEventKind};
 use crossterm::execute;
 use crossterm::terminal::{
-    disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen,
+    EnterAlternateScreen, LeaveAlternateScreen, disable_raw_mode, enable_raw_mode,
 };
 use ratatui::backend::{Backend, CrosstermBackend};
 use ratatui::style::{Color, Modifier, Style};
@@ -20,10 +20,10 @@ use ratatui::widgets::{Block, Borders, List, ListItem, Paragraph, Wrap};
 use ratatui::{Frame, Terminal};
 use serde::de::DeserializeOwned;
 
+use crate::models::Model;
 use crate::models::ort::license_classifications::LicenseClassifications;
 use crate::models::ort::ort_result::OrtResult;
 use crate::models::ort::repository_configuration::RepositoryConfiguration;
-use crate::models::Model;
 
 const KINDS: [&str; 3] = [
     "license-classifications",

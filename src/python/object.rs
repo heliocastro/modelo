@@ -8,22 +8,22 @@
 //! and fields are reached with plain attribute access, the way python-ort's pydantic models
 //! behave. The subclasses are created once per interpreter and cached.
 
+use pyo3::conversion::IntoPyObjectExt;
 use pyo3::exceptions::{PyAttributeError, PyKeyError};
 use pyo3::prelude::*;
-use pyo3::sync::GILOnceCell;
+use pyo3::sync::PyOnceLock;
 use pyo3::types::{PyDict, PyList, PyTuple, PyType};
 
 /// A model instance: an ordered set of named fields plus the originating Rust type name.
 #[pyclass(module = "modelo.ort", name = "Object", subclass)]
-#[derive(Clone)]
 pub struct ModeloObject {
     type_name: String,
     keys: Vec<String>,
-    values: Vec<PyObject>,
+    values: Vec<Py<PyAny>>,
 }
 
 impl ModeloObject {
-    fn get(&self, name: &str) -> Option<&PyObject> {
+    fn get(&self, name: &str) -> Option<&Py<PyAny>> {
         self.keys
             .iter()
             .position(|k| k == name)
@@ -57,7 +57,7 @@ impl ModeloObject {
         &self.type_name
     }
 
-    pub fn __getattr__(&self, py: Python<'_>, name: &str) -> PyResult<PyObject> {
+    pub fn __getattr__(&self, py: Python<'_>, name: &str) -> PyResult<Py<PyAny>> {
         match self.get(name) {
             Some(value) => Ok(value.clone_ref(py)),
             None => Err(PyAttributeError::new_err(format!(
@@ -67,7 +67,7 @@ impl ModeloObject {
         }
     }
 
-    pub fn __getitem__(&self, py: Python<'_>, name: &str) -> PyResult<PyObject> {
+    pub fn __getitem__(&self, py: Python<'_>, name: &str) -> PyResult<Py<PyAny>> {
         match self.get(name) {
             Some(value) => Ok(value.clone_ref(py)),
             None => Err(PyKeyError::new_err(name.to_string())),
@@ -84,8 +84,8 @@ impl ModeloObject {
 
     /// Iterates the field names, like a `dict` — without this, Python falls back to the legacy
     /// sequence protocol and calls `__getitem__(0)`, which fails with a confusing `TypeError`.
-    pub fn __iter__(&self, py: Python<'_>) -> PyResult<PyObject> {
-        Ok(PyList::new_bound(py, &self.keys).as_any().iter()?.into())
+    pub fn __iter__(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        Ok(PyList::new(py, &self.keys)?.as_any().try_iter()?.into())
     }
 
     pub fn __dir__(&self) -> Vec<String> {
@@ -102,23 +102,25 @@ impl ModeloObject {
         self.keys.clone()
     }
 
-    pub fn values(&self, py: Python<'_>) -> Vec<PyObject> {
+    pub fn values(&self, py: Python<'_>) -> Vec<Py<PyAny>> {
         self.values.iter().map(|v| v.clone_ref(py)).collect()
     }
 
-    pub fn items<'py>(&self, py: Python<'py>) -> Bound<'py, PyList> {
-        let items: Vec<Bound<'py, PyTuple>> = self
+    pub fn items<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyList>> {
+        let items = self
             .keys
             .iter()
             .zip(&self.values)
-            .map(|(k, v)| PyTuple::new_bound(py, [k.into_py(py), v.clone_ref(py)]))
-            .collect();
-        PyList::new_bound(py, items)
+            .map(|(k, v)| -> PyResult<Bound<'py, PyTuple>> {
+                PyTuple::new(py, [k.as_str().into_py_any(py)?, v.clone_ref(py)])
+            })
+            .collect::<PyResult<Vec<_>>>()?;
+        PyList::new(py, items)
     }
 
     /// A plain, recursively converted `dict` — handy for `json.dumps` or `pprint`.
     pub fn to_dict<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyDict>> {
-        let dict = PyDict::new_bound(py);
+        let dict = PyDict::new(py);
         for (key, value) in self.keys.iter().zip(&self.values) {
             dict.set_item(key, to_plain(py, value.bind(py))?)?;
         }
@@ -126,7 +128,7 @@ impl ModeloObject {
     }
 
     pub fn __eq__(&self, other: &Bound<'_, PyAny>) -> PyResult<bool> {
-        let Ok(other) = other.downcast::<Self>() else {
+        let Ok(other) = other.cast::<Self>() else {
             return Ok(false);
         };
         let other = other.borrow();
@@ -160,18 +162,18 @@ impl ModeloObject {
 
 /// Recursively replaces [`ModeloObject`]s inside `value` with dicts, leaving everything else as is.
 fn to_plain<'py>(py: Python<'py>, value: &Bound<'py, PyAny>) -> PyResult<Bound<'py, PyAny>> {
-    if let Ok(obj) = value.downcast::<ModeloObject>() {
+    if let Ok(obj) = value.cast::<ModeloObject>() {
         return Ok(obj.borrow().to_dict(py)?.into_any());
     }
-    if let Ok(list) = value.downcast::<PyList>() {
+    if let Ok(list) = value.cast::<PyList>() {
         let items = list
             .iter()
             .map(|item| to_plain(py, &item))
             .collect::<PyResult<Vec<_>>>()?;
-        return Ok(PyList::new_bound(py, items).into_any());
+        return Ok(PyList::new(py, items)?.into_any());
     }
-    if let Ok(dict) = value.downcast::<PyDict>() {
-        let out = PyDict::new_bound(py);
+    if let Ok(dict) = value.cast::<PyDict>() {
+        let out = PyDict::new(py);
         for (key, item) in dict.iter() {
             out.set_item(key, to_plain(py, &item)?)?;
         }
@@ -180,28 +182,28 @@ fn to_plain<'py>(py: Python<'py>, value: &Bound<'py, PyAny>) -> PyResult<Bound<'
     Ok(value.clone())
 }
 
-static CLASSES: GILOnceCell<Py<PyDict>> = GILOnceCell::new();
+static CLASSES: PyOnceLock<Py<PyDict>> = PyOnceLock::new();
 
 /// Returns (creating it on first use) the `ModeloObject` subclass named `name`.
 fn class_for<'py>(py: Python<'py>, name: &str) -> PyResult<Bound<'py, PyType>> {
     let cache = CLASSES
-        .get_or_try_init(py, || PyResult::Ok(PyDict::new_bound(py).unbind()))?
+        .get_or_try_init(py, || PyResult::Ok(PyDict::new(py).unbind()))?
         .bind(py);
     if let Some(class) = cache.get_item(name)? {
-        return Ok(class.downcast_into::<PyType>()?);
+        return Ok(class.cast_into::<PyType>()?);
     }
 
-    let namespace = PyDict::new_bound(py);
+    let namespace = PyDict::new(py);
     namespace.set_item("__module__", "modelo.ort")?;
-    let bases = PyTuple::new_bound(py, [py.get_type_bound::<ModeloObject>()]);
+    let bases = PyTuple::new(py, [py.get_type::<ModeloObject>()])?;
     let class = py
-        .get_type_bound::<PyType>()
+        .get_type::<PyType>()
         .call1((name, bases, namespace))?
-        .downcast_into::<PyType>()?;
+        .cast_into::<PyType>()?;
     cache.set_item(name, &class)?;
     // The class claims to live in `modelo.ort`; publishing it there makes that true, so
     // `from modelo.ort import AnalyzerRun` and `pickle` resolve it like any other class.
-    if let Ok(module) = py.import_bound("modelo.ort") {
+    if let Ok(module) = py.import("modelo.ort") {
         module.setattr(name, &class)?;
     }
     Ok(class)
@@ -212,6 +214,6 @@ pub(crate) fn make_object(
     py: Python<'_>,
     name: &str,
     fields: &Bound<'_, PyDict>,
-) -> PyResult<PyObject> {
+) -> PyResult<Py<PyAny>> {
     Ok(class_for(py, name)?.call1((name, fields))?.unbind())
 }
