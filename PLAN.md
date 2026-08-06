@@ -77,7 +77,7 @@
 ### Phase 6: Python Bindings (The "Drop-in" Replacement)
 
 - [x] Implement `pyo3` modules (`src/python.rs`, feature-gated behind `python`; see `Cargo.toml`'s `[features]` and the `pyo3 = { optional = true }` dependency to keep the `vale` binary target from linking against libpython).
-- [x] Match `python-ort` API exactly (Class names, method signatures) — scoped to data-interchange bindings for the 3 top-level models (`LicenseClassifications`, `RepositoryConfiguration`, `OrtResult`: `from_yaml_str`/`from_yaml_file`/`to_json`/`__repr__`), not full per-field attribute parity across all ~100 nested classes. This is a deliberate `ponytail` scope call, not an oversight — see the `ponytail:` comment at the top of `src/python.rs` for the rationale and the incremental-expansion path.
+- [x] Match `python-ort` API exactly (Class names, method signatures) — the 3 top-level models (`LicenseClassifications`, `RepositoryConfiguration`, `OrtResult`) expose `from_yaml_str`/`from_yaml_file`/`to_json`/`to_dict`/`__repr__`, and the whole parsed tree is reachable with attribute access: every nested model is an instance of a `vale.ort.Object` subclass named after it. The object tree is built by a `serde::Serializer` (`src/python/serializer.rs`) driven by the same `Serialize` impls as `to_json`, so the two views cannot drift and no per-class binding code is maintained.
 - [x] Package with `maturin` for easy installation (`pyproject.toml` at repo root; `maturin` itself was not installed in the build environment, so `maturin build` was not exercised — `cargo build --features python` was verified instead).
 
 ### Phase 7: Rewrite the commits

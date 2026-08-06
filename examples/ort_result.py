@@ -8,8 +8,8 @@ Equivalent of python-ort's `examples/ort_result.py`.
 """
 
 import argparse
-import json
 import sys
+from pprint import pprint
 
 from vale.ort import OrtResult
 
@@ -22,17 +22,23 @@ def main() -> None:
     args = parser.parse_args()
 
     try:
-        parsed = OrtResult.from_yaml_file(args.datafile)
+        result = OrtResult.from_yaml_file(args.datafile)
     except (ValueError, OSError) as e:
         print(f"invalid ORT result: {e}", file=sys.stderr)
         sys.exit(1)
 
-    result = json.loads(parsed.to_json())
     if args.analyzer:
-        result = result.get("analyzer")
+        pprint(result.analyzer)
     elif args.advisor:
-        result = result.get("advisor")
-    print(json.dumps(result, indent=2))
+        pprint(result.advisor)
+    else:
+        print(f"repository:  {result.repository.vcs.url}")
+        print(f"revision:    {result.repository.vcs.revision}")
+        for section in ("analyzer", "scanner", "advisor", "evaluator"):
+            print(f"{section + ':':13}{'present' if result[section] else 'not run'}")
+        if result.analyzer and result.analyzer.result:
+            for project in result.analyzer.result.projects[:5]:
+                print(f"  project {project.id} ({project.definition_file_path})")
 
 
 if __name__ == "__main__":
