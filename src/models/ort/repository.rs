@@ -10,7 +10,7 @@ use crate::models::ort::repository_configuration::RepositoryConfiguration;
 use crate::models::ort::vcs_info::VcsInfo;
 use crate::models::{Model, ValidationError};
 
-/// A description of the source code repository that was used as input for `vale`.
+/// A description of the source code repository that was used as input for `modelo`.
 // ponytail: dropped `PartialEq` here since `RepositoryConfiguration` now nests many
 // config/ types that don't derive it; add back if a caller needs repository equality.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]

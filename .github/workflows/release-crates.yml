@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 # SPDX-License-Identifier: MIT
 
-# Publishes the `vale` crate to crates.io. Triggered only by a `v*` tag or a manual dispatch.
+# Publishes the `modelo` crate to crates.io. Triggered only by a `v*` tag or a manual dispatch.
 #
 # The verify job packages the crate exactly as it would be uploaded and runs the test suite
 # against it; publish runs only if that passes. Authentication uses a crates.io API token in the

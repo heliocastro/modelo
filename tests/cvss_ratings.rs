@@ -3,9 +3,9 @@
 
 //! Port of python-ort's `tests/test_cvss_ratings.py`.
 
-use vale::models::ort::cvss2_rating::Cvss2Rating;
-use vale::models::ort::cvss3_rating::Cvss3Rating;
-use vale::models::ort::cvss4_rating::Cvss4Rating;
+use modelo::models::ort::cvss2_rating::Cvss2Rating;
+use modelo::models::ort::cvss3_rating::Cvss3Rating;
+use modelo::models::ort::cvss4_rating::Cvss4Rating;
 
 #[test]
 fn cvss2_upper_bounds() {

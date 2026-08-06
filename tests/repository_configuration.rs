@@ -5,10 +5,10 @@
 
 mod common;
 
-use vale::models::ort::includes::Includes;
-use vale::models::ort::path_include::PathInclude;
-use vale::models::ort::path_include_reason::PathIncludeReason;
-use vale::models::ort::repository_configuration::RepositoryConfiguration;
+use modelo::models::ort::includes::Includes;
+use modelo::models::ort::path_include::PathInclude;
+use modelo::models::ort::path_include_reason::PathIncludeReason;
+use modelo::models::ort::repository_configuration::RepositoryConfiguration;
 
 #[test]
 fn only_include_valid() {

@@ -6,7 +6,7 @@
 //! python-ort's `AdvisorDetails` sets `extra="forbid"`, so an unknown field raises a
 //! `ValidationError`; this port gets the same behaviour from `#[serde(deny_unknown_fields)]`.
 
-use vale::models::ort::advisor_details::AdvisorDetails;
+use modelo::models::ort::advisor_details::AdvisorDetails;
 
 #[test]
 fn unknown_field_is_rejected() {

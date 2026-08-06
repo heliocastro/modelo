@@ -5,9 +5,9 @@
 
 mod common;
 
-use vale::models::ort::advisor_details::AdvisorDetails;
-use vale::models::ort::advisor_result::AdvisorResult;
-use vale::models::ort::advisor_summary::AdvisorSummary;
+use modelo::models::ort::advisor_details::AdvisorDetails;
+use modelo::models::ort::advisor_result::AdvisorResult;
+use modelo::models::ort::advisor_summary::AdvisorSummary;
 
 #[test]
 fn advisor_result_from_yaml() {

@@ -1,10 +1,10 @@
 # SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 # SPDX-License-Identifier: MIT
-"""Check that vale and python-ort produce the same parse of the same YAML files.
+"""Check that modelo and python-ort produce the same parse of the same YAML files.
 
 Requires both packages importable, e.g.:
 
-    maturin develop --features python      # installs `vale`
+    maturin develop --features python      # installs `modelo`
     pip install python-ort                 # or: PYTHONPATH=../python-ort/src
     python examples/parity_check.py
 
@@ -16,7 +16,7 @@ import json
 import sys
 from pathlib import Path
 
-from vale import ort as rust
+from modelo import ort as rust
 
 from ort import OrtResult, RepositoryConfiguration, ort_yaml_load
 from ort.models import LicenseClassifications
@@ -65,18 +65,18 @@ def diff(a, b, path=""):
     if isinstance(a, dict) and isinstance(b, dict):
         for k in sorted(set(a) | set(b)):
             if k not in a:
-                out.append(f"{path}.{k}: only in vale = {json.dumps(b[k])[:80]}")
+                out.append(f"{path}.{k}: only in modelo = {json.dumps(b[k])[:80]}")
             elif k not in b:
                 out.append(f"{path}.{k}: only in python-ort = {json.dumps(a[k])[:80]}")
             else:
                 out += diff(a[k], b[k], f"{path}.{k}")
     elif isinstance(a, list) and isinstance(b, list):
         if len(a) != len(b):
-            out.append(f"{path}: length {len(a)} (python-ort) vs {len(b)} (vale)")
+            out.append(f"{path}: length {len(a)} (python-ort) vs {len(b)} (modelo)")
         for i, (x, y) in enumerate(zip(a, b)):
             out += diff(x, y, f"{path}[{i}]")
     elif a != b:
-        out.append(f"{path}: {json.dumps(a)[:60]} (python-ort) vs {json.dumps(b)[:60]} (vale)")
+        out.append(f"{path}: {json.dumps(a)[:60]} (python-ort) vs {json.dumps(b)[:60]} (modelo)")
     return out
 
 
@@ -105,7 +105,7 @@ def main() -> None:
             continue
         if py_error or rs_error:
             mismatches += 1
-            which = "python-ort" if py_error else "vale"
+            which = "python-ort" if py_error else "modelo"
             print(f"[{name}] only {which} rejects it: {(py_error or rs_error)[:200]}")
             continue
 

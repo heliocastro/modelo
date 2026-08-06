@@ -1,21 +1,21 @@
 [package]
-name = "vale"
-version = "0.3.1"
+name = "modelo"
+version = "0.4.0"
 edition = "2021"
-description = "Validation Extended - ORT model validation, a Rust port of python-ort"
+description = "A modular model validator"
 license = "MIT"
-repository = "https://github.com/heliocastro/vale"
+repository = "https://github.com/heliocastro/modelo"
 readme = "README.md"
 keywords = ["ort", "sbom", "spdx", "validation"]
 categories = ["parser-implementations"]
 exclude = ["examples/*.py", ".github/*"]
 
 [lib]
-name = "vale"
+name = "modelo"
 crate-type = ["rlib", "cdylib"]
 
 [[bin]]
-name = "vale"
+name = "modelo"
 path = "src/main.rs"
 
 [dependencies]

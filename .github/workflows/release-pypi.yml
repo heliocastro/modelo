@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 # SPDX-License-Identifier: MIT
 
-# Builds the `vale` wheels with maturin and publishes them to PyPI, in the shape pydantic uses:
+# Builds the `modelo` wheels with maturin and publishes them to PyPI, in the shape pydantic uses:
 # one build job per platform, a source distribution, then a single publish job that uploads every
 # collected artifact via PyPI trusted publishing (no API token in the repository secrets).
 #

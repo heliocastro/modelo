@@ -5,7 +5,7 @@
 
 mod common;
 
-use vale::models::ort::repository_configuration::RepositoryConfiguration;
+use modelo::models::ort::repository_configuration::RepositoryConfiguration;
 
 fn load_repo_config(name: &str) -> RepositoryConfiguration {
     let value = common::load_yaml(&format!("repo_config/{name}"));

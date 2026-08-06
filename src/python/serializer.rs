@@ -65,7 +65,7 @@ pub fn to_pyobject<T: Serialize>(py: Python<'_>, value: &T) -> PyResult<PyObject
 /// containers such as `HashMap<String, String>`, which must stay plain dicts.
 fn model_name<T: ?Sized>() -> Option<&'static str> {
     let path = std::any::type_name::<T>();
-    if !path.starts_with("vale::models::") || path.contains('<') {
+    if !path.starts_with("modelo::models::") || path.contains('<') {
         return None;
     }
     path.rsplit("::").next()

@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::{Model, ValidationError};
 
-/// A description of the environment that `vale` (or the original ORT run) was executed in.
+/// A description of the environment that `modelo` (or the original ORT run) was executed in.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Environment {
     /// The version of the OSS Review Toolkit as a string.

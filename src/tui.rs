@@ -188,7 +188,7 @@ fn draw_select_kind(f: &mut Frame, app: &App) {
     let list = List::new(items).block(
         Block::default()
             .borders(Borders::ALL)
-            .title("vale — select model kind (up/down, Enter, q to quit)"),
+            .title("modelo — select model kind (up/down, Enter, q to quit)"),
     );
     f.render_widget(list, f.size());
 }
