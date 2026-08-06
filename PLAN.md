@@ -1,4 +1,4 @@
-# Plan: Port `python-ort` to `vale` (Rust)
+# Plan: Port `python-ort` to `modelo` (Rust)
 
 ## References
 - python-ort - https://github.com/heliocastro/python-ort
@@ -6,7 +6,7 @@
 
 ## Project Overview
 
-- **Name**: `vale`
+- **Name**: `modelo`
 - **Description**: Validation Extended - Modular dataclass model validator in Rust.
 - **Goal**: A high-performance Rust implementation of the `python-ort` logic, providing modular model validation.
 - **Success Criteria**:
@@ -19,7 +19,7 @@
 
 ### Phase 1: Foundation & Scaffolding
 
-- [x] Initialize Cargo project named `vale`.
+- [x] Initialize Cargo project named `modelo`.
 - [x] Add dependencies: `clap`, `ratatui`, `serde`, `pyo3` (for bindings), `thiserror`, `anyhow`.
 - [x] Set up project structure:
   - `src/lib.rs` (Core traits and engine).
@@ -76,8 +76,8 @@
 
 ### Phase 6: Python Bindings (The "Drop-in" Replacement)
 
-- [x] Implement `pyo3` modules (`src/python.rs`, feature-gated behind `python`; see `Cargo.toml`'s `[features]` and the `pyo3 = { optional = true }` dependency to keep the `vale` binary target from linking against libpython).
-- [x] Match `python-ort` API exactly (Class names, method signatures) — the 3 top-level models (`LicenseClassifications`, `RepositoryConfiguration`, `OrtResult`) expose `from_yaml_str`/`from_yaml_file`/`to_json`/`to_dict`/`__repr__`, and the whole parsed tree is reachable with attribute access: every nested model is an instance of a `vale.ort.Object` subclass named after it. The object tree is built by a `serde::Serializer` (`src/python/serializer.rs`) driven by the same `Serialize` impls as `to_json`, so the two views cannot drift and no per-class binding code is maintained.
+- [x] Implement `pyo3` modules (`src/python.rs`, feature-gated behind `python`; see `Cargo.toml`'s `[features]` and the `pyo3 = { optional = true }` dependency to keep the `modelo` binary target from linking against libpython).
+- [x] Match `python-ort` API exactly (Class names, method signatures) — the 3 top-level models (`LicenseClassifications`, `RepositoryConfiguration`, `OrtResult`) expose `from_yaml_str`/`from_yaml_file`/`to_json`/`to_dict`/`__repr__`, and the whole parsed tree is reachable with attribute access: every nested model is an instance of a `modelo.ort.Object` subclass named after it. The object tree is built by a `serde::Serializer` (`src/python/serializer.rs`) driven by the same `Serialize` impls as `to_json`, so the two views cannot drift and no per-class binding code is maintained.
 - [x] Package with `maturin` for easy installation (`pyproject.toml` at repo root; `maturin` itself was not installed in the build environment, so `maturin build` was not exercised — `cargo build --features python` was verified instead).
 
 ### Phase 7: Rewrite the commits
@@ -121,16 +121,16 @@
 
 ### Phase 10: Multi-model namespaces
 - [x] Move the ORT model into its own namespace so further model families can be added beside it:
-    `src/models/*.rs` -> `src/models/ort/*.rs`, i.e. `vale::models::ort::<module>`. The validation
-    engine (`Model`, `ValidationError`) stays family-agnostic at `vale::models`, which is why the
+    `src/models/*.rs` -> `src/models/ort/*.rs`, i.e. `modelo::models::ort::<module>`. The validation
+    engine (`Model`, `ValidationError`) stays family-agnostic at `modelo::models`, which is why the
     ~90 model files' `use crate::models::{Model, ValidationError}` lines are unchanged.
-- [x] Python bindings: the three ORT classes moved from the top-level `vale` module into a `vale.ort`
-    submodule (registered in `sys.modules` so `import vale.ort` and `from vale.ort import X` both
-    work, with `__name__` and `#[pyclass(module = "vale.ort")]` set so tracebacks and pickling
+- [x] Python bindings: the three ORT classes moved from the top-level `modelo` module into a `modelo.ort`
+    submodule (registered in `sys.modules` so `import modelo.ort` and `from modelo.ort import X` both
+    work, with `__name__` and `#[pyclass(module = "modelo.ort")]` set so tracebacks and pickling
     report the dotted name). No top-level aliases were kept -- nothing is released yet.
-- [x] Examples updated to `from vale.ort import ...`; the parity check still reports 0 mismatches.
-- [ ] CLI subcommands are still flat (`vale ort-result`) rather than grouped per family
-    (`vale ort ort-result`); deferred until a second family exists to group against.
+- [x] Examples updated to `from modelo.ort import ...`; the parity check still reports 0 mismatches.
+- [ ] CLI subcommands are still flat (`modelo ort-result`) rather than grouped per family
+    (`modelo ort ort-result`); deferred until a second family exists to group against.
 
 ## Development Rules
 

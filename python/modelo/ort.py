@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: MIT
 """ORT model bindings.
 
-The classes are implemented in Rust and re-exported here so that ``vale.ort`` is an
+The classes are implemented in Rust and re-exported here so that ``modelo.ort`` is an
 importable, type-checkable module. See ``ort.pyi`` for the type information.
 """
 
-from vale._vale.ort import (  # type: ignore[import-not-found]
+from modelo._modelo.ort import (  # type: ignore[import-not-found]
     LicenseClassifications,
     Object,
     OrtResult,

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 # SPDX-License-Identifier: MIT
-"""Validate a license-classifications YAML file with vale.
+"""Validate a license-classifications YAML file with modelo.
 
 Equivalent of python-ort's `examples/licenses_classification.py`.
 
@@ -10,7 +10,7 @@ Equivalent of python-ort's `examples/licenses_classification.py`.
 import argparse
 import sys
 
-from vale.ort import LicenseClassifications
+from modelo.ort import LicenseClassifications
 
 
 def main() -> None:

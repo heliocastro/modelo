@@ -3,9 +3,9 @@ requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "vale"
-version = "0.3.1"
-description = "Validation Extended - ORT model validation in Rust, with python-ort compatible bindings"
+name = "python-modelo"
+version = "0.4.0"
+description = "Modelo - A modular model validator, with python-ort compatible bindings"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -20,10 +20,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/heliocastro/vale"
+Homepage = "https://github.com/heliocastro/modelo"
 
 [tool.maturin]
-module-name = "vale._vale"
+module-name = "modelo._modelo"
 python-source = "python"
 features = ["python"]
-include = ["python/vale/py.typed", "python/vale/*.pyi"]
+include = ["python/modelo/py.typed", "python/modelo/*.pyi"]

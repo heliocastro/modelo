@@ -33,7 +33,7 @@ use crate::models::ort::license_classifications::LicenseClassifications as RustL
 use crate::models::ort::ort_result::OrtResult as RustOrtResult;
 use crate::models::ort::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
 use crate::models::Model;
-use crate::python::object::ValeObject;
+use crate::python::object::ModeloObject;
 use crate::python::serializer::to_pyobject;
 
 /// Parses `s` as YAML into `T` and validates it, mapping any failure to a `PyValueError`
@@ -58,7 +58,7 @@ fn to_pretty_json<T: Serialize>(value: &T) -> PyResult<String> {
 
 macro_rules! pymodel {
     ($py_name:ident, $rust_ty:ty) => {
-        #[pyclass(module = "vale.ort")]
+        #[pyclass(module = "modelo.ort")]
         #[derive(Clone)]
         pub struct $py_name {
             pub inner: $rust_ty,
@@ -76,7 +76,7 @@ macro_rules! pymodel {
             }
 
             /// The parsed model as a tree of Python objects, built once and cached.
-            fn node<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, ValeObject>> {
+            fn node<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, ModeloObject>> {
                 let node = match self.node.get() {
                     Some(node) => node,
                     None => {
@@ -84,7 +84,7 @@ macro_rules! pymodel {
                         self.node.get_or_init(|| node)
                     }
                 };
-                Ok(node.bind(py).downcast::<ValeObject>()?.clone())
+                Ok(node.bind(py).downcast::<ModeloObject>()?.clone())
             }
         }
 
@@ -164,26 +164,26 @@ pymodel!(LicenseClassifications, RustLicenseClassifications);
 pymodel!(RepositoryConfiguration, RustRepositoryConfiguration);
 pymodel!(OrtResult, RustOrtResult);
 
-/// Python extension module `vale._vale`. Each model family gets its own submodule, mirroring the
-/// Rust `models::<family>` layout; the `vale` Python package re-exports them, so
-/// `from vale.ort import OrtResult` is the ORT import path.
+/// Python extension module `modelo._modelo`. Each model family gets its own submodule, mirroring the
+/// Rust `models::<family>` layout; the `modelo` Python package re-exports them, so
+/// `from modelo.ort import OrtResult` is the ORT import path.
 #[pymodule]
-fn _vale(py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
+fn _modelo(py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
     let ort = PyModule::new_bound(py, "ort")?;
-    ort.add_class::<ValeObject>()?;
+    ort.add_class::<ModeloObject>()?;
     ort.add_class::<LicenseClassifications>()?;
     ort.add_class::<RepositoryConfiguration>()?;
     ort.add_class::<OrtResult>()?;
     m.add_submodule(&ort)?;
     // `add_submodule` keys the parent attribute off the name given above, so the dotted name has
-    // to be set afterwards for tracebacks and pickling to report `vale.ort`, which is the module
+    // to be set afterwards for tracebacks and pickling to report `modelo.ort`, which is the module
     // the classes are re-exported from.
-    ort.setattr("__name__", "vale.ort")?;
+    ort.setattr("__name__", "modelo.ort")?;
 
     // `add_submodule` only sets the attribute on the parent; without a `sys.modules` entry,
-    // `from vale._vale.ort import X` fails for a submodule defined in Rust.
+    // `from modelo._modelo.ort import X` fails for a submodule defined in Rust.
     py.import_bound("sys")?
         .getattr("modules")?
-        .set_item("vale._vale.ort", &ort)?;
+        .set_item("modelo._modelo.ort", &ort)?;
     Ok(())
 }

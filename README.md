@@ -3,10 +3,10 @@ SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 SPDX-License-Identifier: MIT
 -->
 
-# vale
+# modelo
 
-VALE is an acronym for **Val**idator **E**xtended, a Rust multi-model validation library
-and a Python bindings extension intended as a drop-in replacement for python-ort.
+modelo is a Rust multi-model validation library and a Python bindings extension intended as a
+drop-in replacement for python-ort.
 
 ## Namespaces
 
@@ -16,17 +16,17 @@ others. Currently there is one: **ort**, the
 
 | | ORT model | Shared validation engine |
 | --- | --- | --- |
-| Rust | `vale::models::ort::*` (`src/models/ort/`) | `vale::models::{Model, ValidationError}` |
-| Python | `vale.ort` | — |
+| Rust | `modelo::models::ort::*` (`src/models/ort/`) | `modelo::models::{Model, ValidationError}` |
+| Python | `modelo.ort` | — |
 
 Adding a family means a new `src/models/<name>/` directory whose types implement
-`models::Model`, plus a `vale.<name>` submodule in `src/python/mod.rs`. The engine, the CLI and the
+`models::Model`, plus a `modelo.<name>` submodule in `src/python/mod.rs`. The engine, the CLI and the
 bindings' plumbing stay as they are.
 
 ## Build
 
 ```sh
-cargo build --release              # library + `vale` binary
+cargo build --release              # library + `modelo` binary
 cargo test                         # unit + integration tests (203 tests)
 cargo clippy --all-targets         # lints
 cargo doc --open                   # API documentation
@@ -39,15 +39,15 @@ libpython:
 cargo build --release --features python
 ```
 
-## Validating files: the `vale` CLI
+## Validating files: the `modelo` CLI
 
 ```sh
-vale license-classifications  tests/data/license-classifications.yml
-vale repository-configuration tests/data/repo_config/curations.yml
-vale ort-result               tests/data/evaluation-result.yml
+modelo license-classifications  tests/data/license-classifications.yml
+modelo repository-configuration tests/data/repo_config/curations.yml
+modelo ort-result               tests/data/evaluation-result.yml
 ```
 
-The subcommands are still flat rather than grouped per family (`vale ort ort-result ...`); that
+The subcommands are still flat rather than grouped per family (`modelo ort ort-result ...`); that
 regrouping is worth doing when a second family lands, not before.
 
 Each subcommand prints `valid <kind> file.` and exits 0, or reports the first parse/validation
@@ -56,14 +56,14 @@ equivalent of python-ort's `ort-validate` (`src/tools/ort_validate.py`).
 
 ### Interactive TUI
 
-`vale tui [FILE]` (or `vale` with no arguments) opens a `ratatui` interface: pick the model kind,
+`modelo tui [FILE]` (or `modelo` with no arguments) opens a `ratatui` interface: pick the model kind,
 type a file path, see the validation result. `↑`/`↓` (or `k`/`j`) move and scroll, `Enter`
 confirms, `b` goes back from the result screen, `q`/`Esc` quits.
 
 ## Using it from Python
 
 ```sh
-pip install vale
+pip install modelo
 ```
 
 or, from a checkout:
@@ -74,13 +74,13 @@ maturin develop --features python     # into the active virtualenv
 # or: pip install .                   # maturin is the build backend
 ```
 
-The `vale.ort` submodule exposes the three top-level ORT models, each parsed from YAML and
+The `modelo.ort` submodule exposes the three top-level ORT models, each parsed from YAML and
 navigated with plain attribute access, the way python-ort's pydantic models are:
 
 ```python
 from pprint import pprint
 
-from vale.ort import LicenseClassifications, OrtResult, RepositoryConfiguration
+from modelo.ort import LicenseClassifications, OrtResult, RepositoryConfiguration
 
 result = OrtResult.from_yaml_file("tests/data/evaluation-result.yml")
 config = RepositoryConfiguration.from_yaml_str(open(".ort.yml").read())
@@ -95,7 +95,7 @@ Invalid input raises `ValueError` (with the failing field path, as pydantic's `V
 does); an unreadable path raises `OSError`.
 
 Every nested model is an instance of a class named after it (`type(result.analyzer).__name__ ==
-"AnalyzerRun"`), all of them subclasses of `vale.ort.Object`. Besides attribute access they
+"AnalyzerRun"`), all of them subclasses of `modelo.ort.Object`. Besides attribute access they
 support `keys()`, `values()`, `items()`, `obj["field"]`, `"field" in obj`, `len(obj)`, `==` and
 `to_dict()`:
 
@@ -112,9 +112,9 @@ Fields that ORT itself serializes as scalars stay scalars: `Identifier` is a str
 
 ### Type checking
 
-The wheel is a PEP 561 typed package: `vale/py.typed` ships alongside `vale/ort.pyi`, so `mypy`,
-`pyright` and `ty` resolve `import vale.ort` and the model classes without falling back to `Any`.
-The compiled extension lives at `vale._vale`; `vale.ort` is a thin Python re-export of it, which is
+The wheel is a PEP 561 typed package: `modelo/py.typed` ships alongside `modelo/ort.pyi`, so `mypy`,
+`pyright` and `ty` resolve `import modelo.ort` and the model classes without falling back to `Any`.
+The compiled extension lives at `modelo._modelo`; `modelo.ort` is a thin Python re-export of it, which is
 what makes the module statically resolvable.
 
 ### Examples
@@ -172,7 +172,7 @@ Windows (x64), plus an sdist, then uploads everything in one `publish` job via
 do the OIDC exchange trusted publishing needs).
 
 One-time setup: on PyPI, add a [trusted
-publisher](https://docs.pypi.org/trusted-publishers/) for the `vale` project pointing at this
+publisher](https://docs.pypi.org/trusted-publishers/) for the `modelo` project pointing at this
 repository and the workflow file `release-pypi.yml` with environment `pypi`; then create a GitHub
 environment named `pypi`. No API token is stored — the job authenticates with the OIDC token from
 `id-token: write`.

@@ -14,10 +14,10 @@ mod common;
 
 use std::collections::HashSet;
 
-use vale::models::ort::license_categorization::LicenseCategorization;
-use vale::models::ort::license_category::LicenseCategory;
-use vale::models::ort::license_classifications::LicenseClassifications;
-use vale::models::Model;
+use modelo::models::ort::license_categorization::LicenseCategorization;
+use modelo::models::ort::license_category::LicenseCategory;
+use modelo::models::ort::license_classifications::LicenseClassifications;
+use modelo::models::Model;
 
 #[test]
 fn detect_duplicate_category_names() {

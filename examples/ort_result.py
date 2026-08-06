@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 # SPDX-License-Identifier: MIT
-"""Validate an ORT result YAML file with vale and print a section of it.
+"""Validate an ORT result YAML file with modelo and print a section of it.
 
 Equivalent of python-ort's `examples/ort_result.py`.
 
@@ -11,7 +11,7 @@ import argparse
 import sys
 from pprint import pprint
 
-from vale.ort import OrtResult
+from modelo.ort import OrtResult
 
 
 def main() -> None:

@@ -2,5 +2,5 @@
 // SPDX-License-Identifier: MIT
 
 fn main() -> anyhow::Result<()> {
-    vale::run()
+    modelo::run()
 }

@@ -4,7 +4,7 @@
 //! The generic model object exposed to Python.
 //!
 //! Every Rust model struct is materialised as an instance of a dynamically created subclass of
-//! [`ValeObject`] named after the struct, so `type(result.analyzer).__name__ == "AnalyzerRun"`
+//! [`ModeloObject`] named after the struct, so `type(result.analyzer).__name__ == "AnalyzerRun"`
 //! and fields are reached with plain attribute access, the way python-ort's pydantic models
 //! behave. The subclasses are created once per interpreter and cached.
 
@@ -14,15 +14,15 @@ use pyo3::sync::GILOnceCell;
 use pyo3::types::{PyDict, PyList, PyTuple, PyType};
 
 /// A model instance: an ordered set of named fields plus the originating Rust type name.
-#[pyclass(module = "vale.ort", name = "Object", subclass)]
+#[pyclass(module = "modelo.ort", name = "Object", subclass)]
 #[derive(Clone)]
-pub struct ValeObject {
+pub struct ModeloObject {
     type_name: String,
     keys: Vec<String>,
     values: Vec<PyObject>,
 }
 
-impl ValeObject {
+impl ModeloObject {
     fn get(&self, name: &str) -> Option<&PyObject> {
         self.keys
             .iter()
@@ -32,7 +32,7 @@ impl ValeObject {
 }
 
 #[pymethods]
-impl ValeObject {
+impl ModeloObject {
     #[new]
     #[pyo3(signature = (type_name, fields = None))]
     fn new(type_name: String, fields: Option<&Bound<'_, PyDict>>) -> PyResult<Self> {
@@ -158,9 +158,9 @@ impl ValeObject {
     }
 }
 
-/// Recursively replaces [`ValeObject`]s inside `value` with dicts, leaving everything else as is.
+/// Recursively replaces [`ModeloObject`]s inside `value` with dicts, leaving everything else as is.
 fn to_plain<'py>(py: Python<'py>, value: &Bound<'py, PyAny>) -> PyResult<Bound<'py, PyAny>> {
-    if let Ok(obj) = value.downcast::<ValeObject>() {
+    if let Ok(obj) = value.downcast::<ModeloObject>() {
         return Ok(obj.borrow().to_dict(py)?.into_any());
     }
     if let Ok(list) = value.downcast::<PyList>() {
@@ -182,7 +182,7 @@ fn to_plain<'py>(py: Python<'py>, value: &Bound<'py, PyAny>) -> PyResult<Bound<'
 
 static CLASSES: GILOnceCell<Py<PyDict>> = GILOnceCell::new();
 
-/// Returns (creating it on first use) the `ValeObject` subclass named `name`.
+/// Returns (creating it on first use) the `ModeloObject` subclass named `name`.
 fn class_for<'py>(py: Python<'py>, name: &str) -> PyResult<Bound<'py, PyType>> {
     let cache = CLASSES
         .get_or_try_init(py, || PyResult::Ok(PyDict::new_bound(py).unbind()))?
@@ -192,16 +192,16 @@ fn class_for<'py>(py: Python<'py>, name: &str) -> PyResult<Bound<'py, PyType>> {
     }
 
     let namespace = PyDict::new_bound(py);
-    namespace.set_item("__module__", "vale.ort")?;
-    let bases = PyTuple::new_bound(py, [py.get_type_bound::<ValeObject>()]);
+    namespace.set_item("__module__", "modelo.ort")?;
+    let bases = PyTuple::new_bound(py, [py.get_type_bound::<ModeloObject>()]);
     let class = py
         .get_type_bound::<PyType>()
         .call1((name, bases, namespace))?
         .downcast_into::<PyType>()?;
     cache.set_item(name, &class)?;
-    // The class claims to live in `vale.ort`; publishing it there makes that true, so
-    // `from vale.ort import AnalyzerRun` and `pickle` resolve it like any other class.
-    if let Ok(module) = py.import_bound("vale.ort") {
+    // The class claims to live in `modelo.ort`; publishing it there makes that true, so
+    // `from modelo.ort import AnalyzerRun` and `pickle` resolve it like any other class.
+    if let Ok(module) = py.import_bound("modelo.ort") {
         module.setattr(name, &class)?;
     }
     Ok(class)

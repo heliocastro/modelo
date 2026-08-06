@@ -13,16 +13,16 @@ mod common;
 
 use std::collections::{HashMap, HashSet};
 
-use vale::models::ort::provenance::{Provenance, RepositoryProvenance};
-use vale::models::ort::scan_result::ScanResult;
-use vale::models::ort::scan_summary::ScanSummary;
-use vale::models::ort::scanner_details::ScannerDetails;
-use vale::models::ort::scanner_run::ScannerRun;
-use vale::models::ort::snippet::Snippet;
-use vale::models::ort::snippet_finding::SnippetFinding;
-use vale::models::ort::text_location::TextLocation;
-use vale::models::ort::vcs_info::VcsInfo;
-use vale::models::ort::vcs_type::VcsType;
+use modelo::models::ort::provenance::{Provenance, RepositoryProvenance};
+use modelo::models::ort::scan_result::ScanResult;
+use modelo::models::ort::scan_summary::ScanSummary;
+use modelo::models::ort::scanner_details::ScannerDetails;
+use modelo::models::ort::scanner_run::ScannerRun;
+use modelo::models::ort::snippet::Snippet;
+use modelo::models::ort::snippet_finding::SnippetFinding;
+use modelo::models::ort::text_location::TextLocation;
+use modelo::models::ort::vcs_info::VcsInfo;
+use modelo::models::ort::vcs_type::VcsType;
 
 fn make_scanner_details() -> ScannerDetails {
     ScannerDetails {

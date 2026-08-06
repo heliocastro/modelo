@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 # SPDX-License-Identifier: MIT
-"""Validate a repository configuration (`.ort.yml`) with vale and summarize it.
+"""Validate a repository configuration (`.ort.yml`) with modelo and summarize it.
 
 Equivalent of python-ort's `examples/repo_config.py`.
 
@@ -10,7 +10,7 @@ Equivalent of python-ort's `examples/repo_config.py`.
 import argparse
 import sys
 
-from vale.ort import RepositoryConfiguration
+from modelo.ort import RepositoryConfiguration
 
 
 def count(value) -> int:

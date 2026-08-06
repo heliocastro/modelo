@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
 // SPDX-License-Identifier: MIT
 
-//! Core validation engine for vale.
+//! Core validation engine for modelo.
 //!
 //! This crate provides the base traits and orchestration for the
 //! modular model validation.
