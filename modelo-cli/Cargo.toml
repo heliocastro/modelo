@@ -1,0 +1,23 @@
+[package]
+name = "modelo-cli"
+version = "0.6.0"
+edition = "2024"
+description = "Command-line validator and TUI for python-ort compatible model data, built on modelo"
+license = "MIT"
+repository = "https://github.com/heliocastro/modelo"
+readme = "README.md"
+keywords = ["ort", "sbom", "spdx", "validation"]
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "modelo"
+path = "src/main.rs"
+
+[dependencies]
+modelo = { path = "..", version = "0.6.0" }
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+anyhow = "1.0"
+clap = { version = "4.0", features = ["derive"] }
+ratatui = "0.26"
+crossterm = "0.27"

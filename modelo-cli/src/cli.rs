@@ -8,10 +8,10 @@ use anyhow::Context;
 use clap::{Parser, Subcommand};
 use serde::de::DeserializeOwned;
 
-use crate::models::Model;
-use crate::models::ort::license_classifications::LicenseClassifications;
-use crate::models::ort::ort_result::OrtResult;
-use crate::models::ort::repository_configuration::RepositoryConfiguration;
+use modelo::models::Model;
+use modelo::models::ort::license_classifications::LicenseClassifications;
+use modelo::models::ort::ort_result::OrtResult;
+use modelo::models::ort::repository_configuration::RepositoryConfiguration;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Validate python-ort YAML data files")]

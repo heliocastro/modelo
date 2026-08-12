@@ -34,7 +34,7 @@ jobs:
           toolchain: stable
           components: clippy
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
-      - run: cargo clippy --all-targets --all-features -- -D warnings
+      - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
 
   test:
     name: Test (${{ matrix.os }})
@@ -49,9 +49,9 @@ jobs:
         with:
           toolchain: stable
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
-      - run: cargo build --locked --all-targets
-      - run: cargo test --locked --all-targets
-      - run: cargo doc --no-deps
+      - run: cargo build --locked --workspace --all-targets
+      - run: cargo test --locked --workspace --all-targets
+      - run: cargo doc --workspace --no-deps
 
   python:
     name: Python bindings (${{ matrix.python-version }})

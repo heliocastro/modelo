@@ -1,6 +1,10 @@
+[workspace]
+members = ["modelo-cli"]
+resolver = "2"
+
 [package]
 name = "modelo"
-version = "0.5.0"
+version = "0.6.0"
 edition = "2024"
 description = "A modular model validator"
 license = "MIT"
@@ -14,19 +18,11 @@ exclude = ["examples/*.py", ".github/*"]
 name = "modelo"
 crate-type = ["rlib", "cdylib"]
 
-[[bin]]
-name = "modelo"
-path = "src/main.rs"
-
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 serde_yaml = "0.9"
 thiserror = "1.0"
-anyhow = "1.0"
-clap = { version = "4.0", features = ["derive"] }
-ratatui = "0.26"
-crossterm = "0.27"
 pyo3 = { version = "0.29.2", features = ["extension-module"], optional = true }
 purl = { version = "0.1.6", features = ["serde", "package-type"] }
 
