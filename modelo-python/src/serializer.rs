@@ -14,7 +14,7 @@ use std::fmt;
 use pyo3::conversion::IntoPyObjectExt;
 use pyo3::prelude::*;
 use pyo3::types::{PyBytes, PyDict, PyList};
-use serde::{ser, Serialize};
+use serde::{Serialize, ser};
 
 use crate::object::make_object;
 

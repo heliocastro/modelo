@@ -27,12 +27,12 @@ use std::sync::OnceLock;
 use pyo3::exceptions::{PyOSError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{Serialize, de::DeserializeOwned};
 
+use modelo::models::Model;
 use modelo::models::ort::license_classifications::LicenseClassifications as RustLicenseClassifications;
 use modelo::models::ort::ort_result::OrtResult as RustOrtResult;
 use modelo::models::ort::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
-use modelo::models::Model;
 
 use crate::object::ModeloObject;
 use crate::serializer::to_pyobject;
