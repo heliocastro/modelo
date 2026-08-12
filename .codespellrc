@@ -1,0 +1,4 @@
+[codespell]
+skip = Cargo.lock, .git, .github, .gitignore, .venv, __pycache__, build, dist, target
+quiet-level = 1
+ignore-words-list = ratatui,TestOf,ser

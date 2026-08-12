@@ -20,20 +20,30 @@ others. Currently there is one: **ort**, the
 | Python | `modelo.ort` | — |
 
 Adding a family means a new `src/models/<name>/` directory whose types implement
-`models::Model`, plus a `modelo.<name>` submodule in `src/python/mod.rs`. The engine, the CLI and the
+`models::Model`, plus a `modelo.<name>` submodule in `src/python/mod.rs`. The engine and the
 bindings' plumbing stay as they are.
+
+## Workspace layout
+
+This repository is a Cargo workspace with two crates, so the library stays free of CLI/TUI
+dependencies (`clap`, `ratatui`, `crossterm`):
+
+| Crate | Contents | Dependencies |
+| --- | --- | --- |
+| [`modelo`](.) | The validation engine and models (`src/`), plus the optional Python bindings | `serde`, `serde_yaml`, `thiserror`, `purl`, `pyo3` (feature-gated) |
+| [`modelo-cli`](modelo-cli/) | The `modelo` binary: CLI subcommands and the TUI | `modelo`, `clap`, `ratatui`, `crossterm`, `anyhow` |
 
 ## Build
 
 ```sh
-cargo build --release              # library + `modelo` binary
-cargo test                         # unit + integration tests (203 tests)
-cargo clippy --all-targets         # lints
-cargo doc --open                   # API documentation
+cargo build --release --workspace  # library + `modelo` binary
+cargo test --workspace              # unit + integration tests (203 tests)
+cargo clippy --workspace --all-targets # lints
+cargo doc --workspace --open        # API documentation
 ```
 
-The Python extension module is behind a feature flag, so the binary never links against
-libpython:
+The Python extension module is behind a feature flag on the `modelo` library crate, so the
+`modelo` binary never links against libpython:
 
 ```sh
 cargo build --release --features python
@@ -41,7 +51,11 @@ cargo build --release --features python
 
 ## Validating files: the `modelo` CLI
 
+The `modelo` binary lives in the [`modelo-cli`](modelo-cli/) crate:
+
 ```sh
+cargo install modelo-cli
+
 modelo license-classifications  tests/data/license-classifications.yml
 modelo repository-configuration tests/data/repo_config/curations.yml
 modelo ort-result               tests/data/evaluation-result.yml

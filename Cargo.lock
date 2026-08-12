@@ -328,18 +328,27 @@ dependencies = [
 
 [[package]]
 name = "modelo"
-version = "0.5.0"
+version = "0.6.0"
 dependencies = [
- "anyhow",
- "clap",
- "crossterm",
  "purl",
  "pyo3",
- "ratatui",
  "serde",
  "serde_json",
  "serde_yaml",
  "thiserror 1.0.69",
+]
+
+[[package]]
+name = "modelo-cli"
+version = "0.6.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "crossterm",
+ "modelo",
+ "ratatui",
+ "serde",
+ "serde_yaml",
 ]
 
 [[package]]

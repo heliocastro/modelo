@@ -114,7 +114,7 @@
     live tests — `.github/workflows/release-pypi.yml`: per-platform `maturin-action` wheel jobs + sdist, then one
     `publish` job using PyPI trusted publishing. Tag/dispatch-triggered only; never run against the live registry
     from here.
-- [x] Create a workflow to deploy thr Rust library in Cargo registry, but do not execut any command or live tests —
+- [x] Create a workflow to deploy thr Rust library in Cargo registry, but do not execute any command or live tests —
     `.github/workflows/release-crates.yml`: `cargo test` + `cargo package`, then `cargo publish` with
     `CARGO_REGISTRY_TOKEN`. `cargo package --locked` was verified locally; nothing was published.
 - [x] Update the README with the information on deployment and how to deploy on both cases

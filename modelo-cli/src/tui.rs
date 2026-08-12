@@ -20,10 +20,10 @@ use ratatui::widgets::{Block, Borders, List, ListItem, Paragraph, Wrap};
 use ratatui::{Frame, Terminal};
 use serde::de::DeserializeOwned;
 
-use crate::models::Model;
-use crate::models::ort::license_classifications::LicenseClassifications;
-use crate::models::ort::ort_result::OrtResult;
-use crate::models::ort::repository_configuration::RepositoryConfiguration;
+use modelo::models::Model;
+use modelo::models::ort::license_classifications::LicenseClassifications;
+use modelo::models::ort::ort_result::OrtResult;
+use modelo::models::ort::repository_configuration::RepositoryConfiguration;
 
 const KINDS: [&str; 3] = [
     "license-classifications",

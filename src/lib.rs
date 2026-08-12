@@ -3,15 +3,10 @@
 
 //! Core validation engine for modelo.
 //!
-//! This crate provides the base traits and orchestration for the
-//! modular model validation.
+//! This crate provides the base traits and models for the modular model
+//! validation. It intentionally has no CLI/TUI dependencies (clap, ratatui); the
+//! `modelo-cli` crate provides the `modelo` binary built on top of this library.
 
-pub mod cli;
 pub mod models;
 #[cfg(feature = "python")]
 pub mod python;
-pub mod tui;
-
-pub fn run() -> anyhow::Result<()> {
-    crate::cli::run()
-}
