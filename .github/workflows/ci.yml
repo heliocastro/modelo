@@ -51,7 +51,10 @@ jobs:
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
       - run: cargo build --locked --workspace --all-targets
       - run: cargo test --locked --workspace --all-targets
-      - run: cargo doc --workspace --no-deps
+      # modelo-python is excluded: it is a private (publish = false) glue crate for the PyPI
+      # wheel, and documenting it alongside modelo/modelo-cli triggers a known cargo doc race on
+      # workspaces (rust-lang/cargo#6313) that is especially flaky on macOS's case-insensitive fs.
+      - run: cargo doc --workspace --no-deps --exclude modelo-python
 
   python:
     name: Python bindings (${{ matrix.python-version }})

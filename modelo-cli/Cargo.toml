@@ -1,6 +1,6 @@
 [package]
 name = "modelo-cli"
-version = "0.6.0"
+version = "0.7.0"
 edition = "2024"
 description = "Command-line validator and TUI for python-ort compatible model data, built on modelo"
 license = "MIT"
@@ -14,7 +14,7 @@ name = "modelo"
 path = "src/main.rs"
 
 [dependencies]
-modelo = { path = "..", version = "0.6.0" }
+modelo = { path = "..", version = "0.7.0" }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.9"
 anyhow = "1.0"

@@ -42,11 +42,11 @@ cargo clippy --workspace --all-targets # lints
 cargo doc --workspace --open        # API documentation
 ```
 
-The Python extension module is behind a feature flag on the `modelo` library crate, so the
-`modelo` binary never links against libpython:
+The Python extension module lives in its own `modelo-python` crate, so the `modelo` library and
+the `modelo` binary never link against libpython:
 
 ```sh
-cargo build --release --features python
+cargo build --release -p modelo-python
 ```
 
 ## Validating files: the `modelo` CLI
@@ -84,7 +84,7 @@ or, from a checkout:
 
 ```sh
 pip install maturin
-maturin develop --features python     # into the active virtualenv
+maturin develop     # into the active virtualenv
 # or: pip install .                   # maturin is the build backend
 ```
 
@@ -202,9 +202,10 @@ it as the secret `CARGO_REGISTRY_TOKEN` in a GitHub environment named `crates-io
 
 ```sh
 cargo publish --dry-run
-maturin build --release --features python   # wheel lands in target/wheels/
+maturin build --release   # wheel lands in target/wheels/
 ```
 
 ## License
 
 MIT — see [LICENSE](LICENSE). Copyright 2026 Helio Chissini de Castro <dev@heliocastro.info>.
+test

@@ -328,10 +328,9 @@ dependencies = [
 
 [[package]]
 name = "modelo"
-version = "0.6.0"
+version = "0.7.0"
 dependencies = [
  "purl",
- "pyo3",
  "serde",
  "serde_json",
  "serde_yaml",
@@ -340,7 +339,7 @@ dependencies = [
 
 [[package]]
 name = "modelo-cli"
-version = "0.6.0"
+version = "0.7.0"
 dependencies = [
  "anyhow",
  "clap",
@@ -348,6 +347,17 @@ dependencies = [
  "modelo",
  "ratatui",
  "serde",
+ "serde_yaml",
+]
+
+[[package]]
+name = "modelo-python"
+version = "0.7.0"
+dependencies = [
+ "modelo",
+ "pyo3",
+ "serde",
+ "serde_json",
  "serde_yaml",
 ]
 

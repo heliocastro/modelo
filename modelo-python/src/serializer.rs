@@ -16,7 +16,7 @@ use pyo3::prelude::*;
 use pyo3::types::{PyBytes, PyDict, PyList};
 use serde::{Serialize, ser};
 
-use crate::python::object::make_object;
+use crate::object::make_object;
 
 /// Wraps a [`PyErr`] so it can travel through serde's error channel.
 #[derive(Debug)]

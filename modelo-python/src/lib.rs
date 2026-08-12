@@ -29,12 +29,13 @@ use pyo3::prelude::*;
 use pyo3::types::PyDict;
 use serde::{Serialize, de::DeserializeOwned};
 
-use crate::models::Model;
-use crate::models::ort::license_classifications::LicenseClassifications as RustLicenseClassifications;
-use crate::models::ort::ort_result::OrtResult as RustOrtResult;
-use crate::models::ort::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
-use crate::python::object::ModeloObject;
-use crate::python::serializer::to_pyobject;
+use modelo::models::Model;
+use modelo::models::ort::license_classifications::LicenseClassifications as RustLicenseClassifications;
+use modelo::models::ort::ort_result::OrtResult as RustOrtResult;
+use modelo::models::ort::repository_configuration::RepositoryConfiguration as RustRepositoryConfiguration;
+
+use crate::object::ModeloObject;
+use crate::serializer::to_pyobject;
 
 /// Parses `s` as YAML into `T` and validates it, mapping any failure to a `PyValueError`
 /// (mirroring python-ort's pattern of surfacing pydantic `ValidationError`s to callers).

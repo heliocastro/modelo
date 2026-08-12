@@ -8,5 +8,3 @@
 //! `modelo-cli` crate provides the `modelo` binary built on top of this library.
 
 pub mod models;
-#[cfg(feature = "python")]
-pub mod python;
