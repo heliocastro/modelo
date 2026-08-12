@@ -4,12 +4,13 @@
 # Publishes the `modelo` (library) and `modelo-cli` (the `modelo` binary) crates to crates.io.
 # Triggered only by a `v*` tag or a manual dispatch.
 #
-# The verify job packages each crate exactly as it would be uploaded and runs the test suite
-# against the workspace; publish runs only if that passes. `modelo` is published before
-# `modelo-cli` since the latter depends on it, with a short pause for the crates.io index to
-# pick up the new version before the dependent crate is verified server-side. Authentication uses
-# a crates.io API token in the `CARGO_REGISTRY_TOKEN` secret, scoped to the `crates-io`
-# environment.
+# The verify job packages `modelo` exactly as it would be uploaded and runs the test suite
+# against the workspace; publish runs only if that passes. `modelo-cli` depends on `modelo` by
+# path+version, so it cannot be packaged or verified until `modelo` is actually published on
+# crates.io (even `cargo package --no-verify` still has to resolve that registry requirement) —
+# it's instead verified server-side by `cargo publish` itself, after `modelo` is published and a
+# short pause lets the crates.io index pick up the new version. Authentication uses a crates.io
+# API token in the `CARGO_REGISTRY_TOKEN` secret, scoped to the `crates-io` environment.
 
 name: Release (crates.io)
 
@@ -35,9 +36,6 @@ jobs:
       # Builds each crate from its packaged tarball, catching files missing from the published
       # artifact (a `cargo test` on the working tree would not).
       - run: cargo package --locked -p modelo
-      # modelo-cli depends on modelo by path+version; it can only be verified against the
-      # not-yet-published registry version, so skip the verify build here.
-      - run: cargo package --locked -p modelo-cli --no-verify
 
   publish:
     name: Publish to crates.io
