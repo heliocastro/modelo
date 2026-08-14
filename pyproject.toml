@@ -27,3 +27,9 @@ manifest-path = "modelo-python/Cargo.toml"
 module-name = "modelo._modelo"
 python-source = "python"
 include = ["python/modelo/py.typed", "python/modelo/*.pyi"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pyyaml>=6.0.3",
+]
