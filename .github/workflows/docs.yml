@@ -1,0 +1,67 @@
+# SPDX-FileCopyrightText: 2026 Helio Chissini de Castro <dev@heliocastro.info>
+# SPDX-License-Identifier: MIT
+
+# Builds rustdoc for the whole workspace -- including `modelo-python`, which is excluded from
+# crates.io (`publish = false`) and therefore never gets a docs.rs page -- and deploys it to
+# GitHub Pages. Triggered on pushes to `main` and manual dispatch; PRs only build, to catch
+# broken docs/intra-doc links before merge.
+
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+      # `modelo` (lib) and `modelo-cli` (bin, both named `modelo`) share an output path; harmless
+      # for this landing page, which links to each crate by its own directory anyway.
+      - run: cargo doc --workspace --no-deps
+        env:
+          RUSTDOCFLAGS: -D warnings
+      - name: Redirect the site root to the `modelo` crate
+        run: |
+          cat > target/doc/index.html <<'HTML'
+          <!DOCTYPE html>
+          <meta http-equiv="refresh" content="0; url=modelo/index.html">
+          <a href="modelo/index.html">Redirecting to the modelo crate docs...</a>
+          HTML
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: target/doc
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
