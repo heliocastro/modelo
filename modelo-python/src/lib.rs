@@ -15,7 +15,7 @@
 //! ```
 //!
 //! The object tree is produced by [`serializer::to_pyobject`], driven by the same `Serialize`
-//! implementations as `to_json`, so the two views never drift apart and no per-type binding code
+//! implementations as `to_json`/`to_yaml`, so the two views never drift apart and no per-type binding code
 //! has to be maintained.
 //!
 //! # Exported classes
@@ -32,7 +32,7 @@
 //! ## Entry points
 //!
 //! Parsed and validated directly from YAML; the only classes with `from_yaml_str` /
-//! `from_yaml_file` / `to_json`.
+//! `from_yaml_file` / `to_json` / `to_yaml`.
 //!
 //! - `OrtResult` ([`modelo::models::ort::ort_result::OrtResult`]) -- a full ORT result file.
 //! - `RepositoryConfiguration` ([`modelo::models::ort::repository_configuration::RepositoryConfiguration`])
@@ -320,6 +320,10 @@ fn to_pretty_json<T: Serialize>(value: &T) -> PyResult<String> {
     serde_json::to_string_pretty(value).map_err(|e| PyValueError::new_err(format!("{e}")))
 }
 
+fn to_yaml<T: Serialize>(value: &T) -> PyResult<String> {
+    serde_yaml::to_string(value).map_err(|e| PyValueError::new_err(format!("{e}")))
+}
+
 macro_rules! pymodel {
     ($py_name:ident, $rust_ty:ty) => {
         #[pyclass(module = "modelo.ort")]
@@ -367,6 +371,10 @@ macro_rules! pymodel {
                 to_pretty_json(&self.inner)
             }
 
+            fn to_yaml(&self) -> PyResult<String> {
+                to_yaml(&self.inner)
+            }
+
             /// The model as nested plain `dict`s and lists.
             fn to_dict<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyDict>> {
                 self.node(py)?.borrow().to_dict(py)
@@ -405,6 +413,7 @@ macro_rules! pymodel {
                     "from_yaml_str",
                     "from_yaml_file",
                     "to_json",
+                    "to_yaml",
                     "to_dict",
                     "keys",
                     "items",
