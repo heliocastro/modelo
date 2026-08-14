@@ -73,12 +73,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Build and install the extension module
-        run: pip install .
+        run: pip install . pytest pyyaml
       - name: Smoke-test the bindings against the test fixtures
         run: |
           python examples/license_classifications.py tests/data/license-classifications.yml
           python examples/repo_config.py tests/data/repo_config/curations.yml
           python examples/ort_result.py tests/data/evaluation-result.yml --analyzer > /dev/null
+      - name: Run Python test suite
+        run: pytest tests/python -v
 
   parity:
     name: Parity with python-ort

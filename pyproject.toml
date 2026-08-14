@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "python-modelo"
-version = "0.8.1"
+version = "0.9.0"
 description = "Modelo - A modular model validator, with python-ort compatible bindings"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,3 +27,9 @@ manifest-path = "modelo-python/Cargo.toml"
 module-name = "modelo._modelo"
 python-source = "python"
 include = ["python/modelo/py.typed", "python/modelo/*.pyi"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pyyaml>=6.0.3",
+]
