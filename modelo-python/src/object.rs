@@ -217,3 +217,21 @@ pub(crate) fn make_object(
 ) -> PyResult<Py<PyAny>> {
     Ok(class_for(py, name)?.call1((name, fields))?.unbind())
 }
+
+/// Eagerly creates and publishes the `ModeloObject` subclass for each name in `names`, so that
+/// `from modelo.ort import <Model>` works for every model reachable from the object tree, not
+/// just the ones that happen to have been produced by a prior parse. Also set directly on
+/// `ort_module` (the Rust `modelo._modelo.ort` submodule), because `class_for` only publishes to
+/// the higher-level `modelo.ort` Python module: `from modelo._modelo.ort import <Model>`, which
+/// `modelo/ort.py` relies on, resolves attributes on `ort_module` itself.
+pub(crate) fn register_known_classes(
+    py: Python<'_>,
+    ort_module: &Bound<'_, PyModule>,
+    names: &[&str],
+) -> PyResult<()> {
+    for name in names {
+        let class = class_for(py, name)?;
+        ort_module.setattr(*name, class)?;
+    }
+    Ok(())
+}
