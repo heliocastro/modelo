@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "python-modelo"
-version = "0.7.0"
+version = "0.8.0"
 description = "Modelo - A modular model validator, with python-ort compatible bindings"
 readme = "README.md"
 requires-python = ">=3.11"

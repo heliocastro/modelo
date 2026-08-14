@@ -3,7 +3,7 @@
 
 [package]
 name = "modelo-python"
-version = "0.7.0"
+version = "0.8.0"
 edition = "2024"
 description = "Python bindings for modelo, built with pyo3/maturin"
 license = "MIT"
