@@ -5,6 +5,14 @@
 //!
 //! [`Model`] and [`ValidationError`] are family-agnostic and live here; the models themselves are
 //! namespaced by the standard they describe, currently only [`ort`].
+//!
+//! ```
+//! use modelo::models::Model;
+//! use modelo::models::ort::identifier::Identifier;
+//!
+//! let id: Identifier = "Maven:org.example:artifact:1.0".parse().unwrap();
+//! id.validate().expect("a fully-qualified identifier is valid");
+//! ```
 
 use std::fmt::{Debug, Display};
 use thiserror::Error;
