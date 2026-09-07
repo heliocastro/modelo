@@ -91,3 +91,52 @@ def _assert_no_modelo_objects(value: object) -> None:
     elif isinstance(value, list):
         for item in value:
             _assert_no_modelo_objects(item)
+
+
+# Nested models (reachable from an `OrtResult`, never parsed directly from YAML) also expose
+# `to_json`/`to_yaml`, each serializing just the subtree rooted at that object.
+_ORT_RESULT = OrtResult.from_yaml_file(str(DATA_DIR / "evaluation-result.yml"))
+
+NESTED_MODELS = [
+    _ORT_RESULT.scanner,
+    _ORT_RESULT.analyzer.result.packages[0],
+    _ORT_RESULT.analyzer.result.packages[0].vcs,
+]
+
+
+@pytest.mark.parametrize("nested", NESTED_MODELS, ids=[type(m).__name__ for m in NESTED_MODELS])
+def test_nested_model_to_json_returns_valid_json_string(nested):
+    """`to_json()` on a nested model returns a string that `json.loads` can parse back into a dict."""
+    result = nested.to_json()
+
+    assert isinstance(result, str)
+    decoded = json.loads(result)
+    assert isinstance(decoded, dict)
+    assert decoded
+
+
+@pytest.mark.parametrize("nested", NESTED_MODELS, ids=[type(m).__name__ for m in NESTED_MODELS])
+def test_nested_model_to_yaml_returns_valid_yaml_string(nested):
+    """`to_yaml()` on a nested model returns a string that `yaml.safe_load` can parse back into a dict."""
+    result = nested.to_yaml()
+
+    assert isinstance(result, str)
+    decoded = yaml.safe_load(result)
+    assert isinstance(decoded, dict)
+    assert decoded
+
+
+@pytest.mark.parametrize("nested", NESTED_MODELS, ids=[type(m).__name__ for m in NESTED_MODELS])
+def test_nested_model_to_json_matches_to_dict(nested):
+    """`to_json()` and `to_dict()` describe the same subtree."""
+    from_json = json.loads(nested.to_json())
+    from_dict = json.loads(json.dumps(nested.to_dict()))
+
+    assert from_json == from_dict
+
+
+def test_nested_model_to_json_is_subtree_of_parent():
+    """A nested model's `to_json()` matches the corresponding branch of the parent's `to_dict()`."""
+    scanner_from_parent = _ORT_RESULT.to_dict()["scanner"]
+
+    assert json.loads(_ORT_RESULT.scanner.to_json()) == scanner_from_parent

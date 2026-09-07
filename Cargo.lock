@@ -316,7 +316,7 @@ dependencies = [
 
 [[package]]
 name = "modelo"
-version = "0.10.0"
+version = "0.11.0"
 dependencies = [
  "serde",
  "serde_json",
@@ -326,7 +326,7 @@ dependencies = [
 
 [[package]]
 name = "modelo-cli"
-version = "0.10.0"
+version = "0.11.0"
 dependencies = [
  "anyhow",
  "clap",
@@ -339,7 +339,7 @@ dependencies = [
 
 [[package]]
 name = "modelo-python"
-version = "0.10.0"
+version = "0.11.0"
 dependencies = [
  "modelo",
  "pyo3",

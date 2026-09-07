@@ -9,10 +9,11 @@
 //! behave. The subclasses are created once per interpreter and cached.
 
 use pyo3::conversion::IntoPyObjectExt;
-use pyo3::exceptions::{PyAttributeError, PyKeyError};
+use pyo3::exceptions::{PyAttributeError, PyKeyError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::sync::PyOnceLock;
 use pyo3::types::{PyDict, PyList, PyTuple, PyType};
+use serde_json::Value as JsonValue;
 
 /// A model instance: an ordered set of named fields plus the originating Rust type name.
 #[pyclass(module = "modelo.ort", name = "Object", subclass)]
@@ -28,6 +29,14 @@ impl ModeloObject {
             .iter()
             .position(|k| k == name)
             .map(|i| &self.values[i])
+    }
+
+    fn to_json_value(&self, py: Python<'_>) -> PyResult<JsonValue> {
+        let mut map = serde_json::Map::with_capacity(self.keys.len());
+        for (key, value) in self.keys.iter().zip(&self.values) {
+            map.insert(key.clone(), value_to_json(py, value.bind(py))?);
+        }
+        Ok(JsonValue::Object(map))
     }
 }
 
@@ -89,10 +98,12 @@ impl ModeloObject {
     }
 
     pub fn __dir__(&self) -> Vec<String> {
-        let mut names: Vec<String> = ["__type__", "keys", "values", "items", "to_dict"]
-            .iter()
-            .map(|s| (*s).to_string())
-            .collect();
+        let mut names: Vec<String> = [
+            "__type__", "keys", "values", "items", "to_dict", "to_json", "to_yaml",
+        ]
+        .iter()
+        .map(|s| (*s).to_string())
+        .collect();
         names.extend(self.keys.iter().cloned());
         names
     }
@@ -125,6 +136,18 @@ impl ModeloObject {
             dict.set_item(key, to_plain(py, value.bind(py))?)?;
         }
         Ok(dict)
+    }
+
+    /// The subtree rooted at this object, serialized as pretty-printed JSON.
+    pub fn to_json(&self, py: Python<'_>) -> PyResult<String> {
+        serde_json::to_string_pretty(&self.to_json_value(py)?)
+            .map_err(|e| PyValueError::new_err(e.to_string()))
+    }
+
+    /// The subtree rooted at this object, serialized as YAML.
+    pub fn to_yaml(&self, py: Python<'_>) -> PyResult<String> {
+        serde_yaml::to_string(&self.to_json_value(py)?)
+            .map_err(|e| PyValueError::new_err(e.to_string()))
     }
 
     pub fn __eq__(&self, other: &Bound<'_, PyAny>) -> PyResult<bool> {
@@ -180,6 +203,49 @@ fn to_plain<'py>(py: Python<'py>, value: &Bound<'py, PyAny>) -> PyResult<Bound<'
         return Ok(out.into_any());
     }
     Ok(value.clone())
+}
+
+/// Recursively converts `value` into a [`JsonValue`], following the same shape [`to_plain`]
+/// produces for `to_dict` — [`ModeloObject`]s become objects, lists stay lists, and scalars are
+/// converted with their nearest JSON equivalent.
+fn value_to_json(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<JsonValue> {
+    if value.is_none() {
+        return Ok(JsonValue::Null);
+    }
+    if let Ok(obj) = value.cast::<ModeloObject>() {
+        return obj.borrow().to_json_value(py);
+    }
+    if let Ok(list) = value.cast::<PyList>() {
+        let items = list
+            .iter()
+            .map(|item| value_to_json(py, &item))
+            .collect::<PyResult<Vec<_>>>()?;
+        return Ok(JsonValue::Array(items));
+    }
+    if let Ok(dict) = value.cast::<PyDict>() {
+        let mut map = serde_json::Map::with_capacity(dict.len());
+        for (key, item) in dict.iter() {
+            let key: String = key.extract()?;
+            map.insert(key, value_to_json(py, &item)?);
+        }
+        return Ok(JsonValue::Object(map));
+    }
+    if let Ok(b) = value.extract::<bool>() {
+        return Ok(JsonValue::Bool(b));
+    }
+    if let Ok(i) = value.extract::<i64>() {
+        return Ok(JsonValue::Number(i.into()));
+    }
+    if let Ok(f) = value.extract::<f64>() {
+        return Ok(serde_json::Number::from_f64(f).map_or(JsonValue::Null, JsonValue::Number));
+    }
+    if let Ok(s) = value.extract::<String>() {
+        return Ok(JsonValue::String(s));
+    }
+    // Fallback for any type not otherwise recognised (e.g. raw bytes): its `repr`.
+    Ok(JsonValue::String(
+        value.repr()?.to_string_lossy().into_owned(),
+    ))
 }
 
 static CLASSES: PyOnceLock<Py<PyDict>> = PyOnceLock::new();
