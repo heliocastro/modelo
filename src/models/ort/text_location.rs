@@ -14,9 +14,9 @@ pub struct TextLocation {
     /// The path (with invariant separators) of the file that contains the text.
     pub path: String,
     /// The line the text is starting at.
-    pub start_line: u32,
+    pub start_line: i32,
     /// The line the text is ending at.
-    pub end_line: u32,
+    pub end_line: i32,
 }
 
 impl fmt::Display for TextLocation {
@@ -49,5 +49,15 @@ mod tests {
             end_line: 5,
         };
         assert!(loc.validate().is_err());
+    }
+
+    #[test]
+    fn accept_negation() {
+        let loc = TextLocation {
+            path: "a.rs".to_string(),
+            start_line: -1,
+            end_line: -1,
+        };
+        assert!(loc.validate().is_ok());
     }
 }
