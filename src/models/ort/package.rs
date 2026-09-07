@@ -5,7 +5,6 @@ use std::collections::{HashMap, HashSet};
 use std::fmt;
 use std::hash::{Hash as StdHash, Hasher};
 
-use purl::Purl;
 use serde::{Deserialize, Serialize};
 
 use crate::models::ort::identifier::Identifier;
@@ -24,7 +23,7 @@ pub struct Package {
     /// The unique identifier of this package.
     pub id: Identifier,
     /// An additional identifier in package URL syntax (<https://github.com/package-url/purl-spec>).
-    pub purl: Purl,
+    pub purl: String,
     /// An optional additional identifier in CPE syntax.
     #[serde(default)]
     pub cpe: Option<String>,
@@ -106,7 +105,7 @@ mod tests {
     fn make() -> Package {
         Package {
             id: Identifier::from_str("Maven:org.example:artifact:1.0").unwrap(),
-            purl: Purl::from_str("pkg:maven/org.example/artifact@1.0").unwrap(),
+            purl: "pkg:maven/org.example/artifact@1.0".to_string(),
             cpe: None,
             authors: HashSet::new(),
             declared_licenses: HashSet::new(),
