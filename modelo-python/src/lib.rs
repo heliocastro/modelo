@@ -32,7 +32,8 @@
 //! ## Entry points
 //!
 //! Parsed and validated directly from YAML; the only classes with `from_yaml_str` /
-//! `from_yaml_file` / `to_json` / `to_yaml`.
+//! `from_yaml_file`. Every model, including nested ones, has `to_json` / `to_yaml` (serializing
+//! just the subtree rooted at that object).
 //!
 //! - `OrtResult` ([`modelo::models::ort::ort_result::OrtResult`]) -- a full ORT result file.
 //! - `RepositoryConfiguration` ([`modelo::models::ort::repository_configuration::RepositoryConfiguration`])
