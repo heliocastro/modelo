@@ -41,6 +41,7 @@ fn advisor_result_minimal() {
             issues: Vec::new(),
         },
         vulnerabilities: Vec::new(),
+        health_metrics: Vec::new(),
         defects: Vec::new(),
     };
     assert_eq!(result.advisor.name, "TestAdvisor");

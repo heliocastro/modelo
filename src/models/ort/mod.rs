@@ -38,6 +38,7 @@ pub mod file_list;
 pub mod file_list_storage_configuration;
 pub mod file_storage_configuration;
 pub mod hash;
+pub mod health_metric;
 pub mod http_file_storage_configuration;
 pub mod identifier;
 pub mod includes;

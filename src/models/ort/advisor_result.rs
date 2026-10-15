@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::ort::advisor_details::AdvisorDetails;
 use crate::models::ort::advisor_summary::AdvisorSummary;
-use crate::models::ort::defect::Defect;
+use crate::models::ort::health_metric::HealthMetric;
 use crate::models::ort::vulnerability::Vulnerability;
 use crate::models::{Model, ValidationError};
 
@@ -22,9 +22,12 @@ pub struct AdvisorResult {
     /// The vulnerabilities found.
     #[serde(default)]
     pub vulnerabilities: Vec<Vulnerability>,
-    /// The defects found. Deprecated in python-ort; kept for compatibility.
+    /// The health metrics.
     #[serde(default)]
-    pub defects: Vec<Defect>,
+    pub health_metrics: Vec<HealthMetric>,
+    /// Legacy field ignored by ORT; accepted on input so older results still parse.
+    #[serde(default, skip_serializing)]
+    pub defects: Vec<serde_json::Value>,
 }
 
 impl fmt::Display for AdvisorResult {
@@ -56,6 +59,7 @@ mod tests {
                 issues: Vec::new(),
             },
             vulnerabilities: Vec::new(),
+            health_metrics: Vec::new(),
             defects: Vec::new(),
         };
         assert_eq!(result.to_string(), "OSV");
