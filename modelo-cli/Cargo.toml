@@ -1,6 +1,6 @@
 [package]
 name = "modelo-cli"
-version = "0.11.0"
+version = "0.11.2"
 edition = "2024"
 description = "Command-line validator and TUI for python-ort compatible model data, built on modelo"
 license = "MIT"
