@@ -102,6 +102,7 @@ let built = AdvisorResult {
     advisor,
     summary,
     vulnerabilities: vec![vulnerability],
+    health_metrics: Vec::new(),
     defects: Vec::new(),
 };
 assert_eq!(built.vulnerabilities[0].id, "CVE-2026-0002");

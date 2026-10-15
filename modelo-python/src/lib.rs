@@ -105,6 +105,7 @@
 //! - `AdvisorSummary` ([`modelo::models::ort::advisor_summary::AdvisorSummary`])
 //! - `AdvisorConfiguration` ([`modelo::models::ort::advisor_configuration::AdvisorConfiguration`])
 //! - `Defect` ([`modelo::models::ort::defect::Defect`])
+//! - `HealthMetric` ([`modelo::models::ort::health_metric::HealthMetric`])
 //! - `Vulnerability` ([`modelo::models::ort::vulnerability::Vulnerability`])
 //! - `VulnerabilityReference` ([`modelo::models::ort::vulnerability_reference::VulnerabilityReference`])
 //! - `Issue` ([`modelo::models::ort::issue::Issue`])
@@ -476,6 +477,7 @@ const KNOWN_ORT_MODELS: &[&str] = &[
     "FileListStorageConfiguration",
     "FileStorageConfiguration",
     "Hash",
+    "HealthMetric",
     "HttpFileStorageConfiguration",
     "Identifier",
     "Includes",

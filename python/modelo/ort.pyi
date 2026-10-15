@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: MIT
 """Type stubs for the Rust-implemented ORT model bindings."""
 
-from typing import Any, Iterator
+from collections.abc import Iterator
+from typing import Any
 
 __all__ = [
     "AdvisorConfiguration",
@@ -33,6 +34,7 @@ __all__ = [
     "FileListStorageConfiguration",
     "FileStorageConfiguration",
     "Hash",
+    "HealthMetric",
     "HttpFileStorageConfiguration",
     "Identifier",
     "Includes",
@@ -48,8 +50,8 @@ __all__ = [
     "Object",
     "OrtResolutionIssue",
     "OrtResolutionRuleViolation",
-    "OrtResolutions",
     "OrtResolutionVulnerability",
+    "OrtResolutions",
     "OrtResult",
     "Package",
     "PackageConfiguration",
@@ -157,6 +159,7 @@ class FileListEntry(_NestedModel): ...
 class FileListStorageConfiguration(_NestedModel): ...
 class FileStorageConfiguration(_NestedModel): ...
 class Hash(_NestedModel): ...
+class HealthMetric(_NestedModel): ...
 class HttpFileStorageConfiguration(_NestedModel): ...
 class Identifier(_NestedModel): ...
 class Includes(_NestedModel): ...
